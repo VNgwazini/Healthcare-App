@@ -39,30 +39,14 @@ const ManageDonorListView = () => {
   const getAllBloodDonors = () => {
     axios({
       method: 'GET',
-      url: `http://localhost:1337/blood-donors?bloodBank.id=${user.bloodBank.id}&_sort=lastName:ASC`,
+      url: `http://localhost:1337/blood-donors?bloodBank.id=${user.bloodBank.id}&_sort=createdAt:DESC`,
       headers: {
         Authorization: `Bearer ${token}`
       },
     })
     //handle success
     .then((response) => {
-      if (response.data.length === 100) {
-        axios({
-          method: 'GET',
-          url: `http://localhost:1337/blood-donors?bloodBank.id=${user.bloodBank.id}&_sort=lastName:ASC&_start=100`,
-          headers: {
-            Authorization: `Bearer ${token}`
-          },
-        })
-        //handle success
-        .then((response2) => {
-          var temp = response.data.concat(response2.data);
-          setBloodDonors(temp);
-          console.log(temp);
-          // stops here, assuming that there wouldn't be more than 200 donors
-        })
-        .catch(error => console.error(`Error: ${error}`));
-      }
+      setBloodDonors(response.data);
     })
     //handle error
     .catch(error => console.error(`Error: ${error}`));
