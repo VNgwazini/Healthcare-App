@@ -10,15 +10,12 @@ import {
   Card,
   CardHeader,
   Chip,
-  colors,
   Divider,
   Table,
   TableBody,
   TableCell,
   TableHead,
-  TableRow,
-  TableSortLabel,
-  Tooltip
+  TableRow
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 

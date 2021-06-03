@@ -28,7 +28,6 @@ class InventoryPie extends React.Component {
   componentDidMount() {
     const token = localStorage.getItem("jwt");
     const user = JSON.parse(localStorage.getItem("user"));
-    const currentDate = new Date();
 
     const getData = async () => {
       var url;

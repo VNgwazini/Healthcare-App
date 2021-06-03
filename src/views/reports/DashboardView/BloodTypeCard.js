@@ -24,21 +24,20 @@ class BloodTypeCard extends React.Component {
   componentDidMount() {
     const token = localStorage.getItem("jwt");
     const user = JSON.parse(localStorage.getItem("user"));
-    const currentDate = new Date();
 
-    const updateData = async (id) => {
-      axios({
-        method: 'PUT',
-        url: `http://localhost:1337/bloodsupplies/${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        data: { usage: "unassigned" }
-      })
-      .then((response) => {
-        console.log(response.data);
-      })   
-    }
+    // const updateData = async (id) => {
+    //   axios({
+    //     method: 'PUT',
+    //     url: `http://localhost:1337/bloodsupplies/${id}`,
+    //     headers: {
+    //       Authorization: `Bearer ${token}`
+    //     },
+    //     data: { usage: "unassigned" }
+    //   })
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })   
+    // }
 
     // if (this.props.bloodType == "A+") {
     //   for (var i = 0; i < 1201; i+=100) {

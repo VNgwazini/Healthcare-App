@@ -35,9 +35,6 @@ const ManageInventoryList = () => {
   const [donors, setDonors] = useState([]);
 
   useEffect(() => {
-    getAllBloodUnits();
-    getAllDonors();
-  }, []);
 
   // TODO: make sure it actually gets all of the donors, not just 100
   const getAllDonors = () => {
@@ -114,6 +111,13 @@ const ManageInventoryList = () => {
       .catch(error => console.error(`Error: ${error}`));
     }
   }
+
+    getAllBloodUnits();
+    getAllDonors();
+    // eslint-disable-next-line
+  }, []);
+
+
 
   return (
     <>

@@ -45,7 +45,6 @@ class NetworkBloodSupply extends React.Component {
       });
 
       var url, typeList;
-      const currentDate = new Date();
 
       for (var type of BLOODTYPES) {
         typeList = [];
@@ -58,10 +57,10 @@ class NetworkBloodSupply extends React.Component {
           });
           typeList.push(response.data.length);
         }
-        var tempNames = this.state.network;
-        tempNames.push(typeList);
+        var networkNames = this.state.network;
+        networkNames.push(typeList);
         this.setState({
-          network: tempNames
+          network: networkNames
         });
       }
     } 

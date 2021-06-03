@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 const NetworkListView = () => {
   const classes = useStyles();
   const [otherBloodBanks, setOtherBloodBanks] = useState([]);
-  const [otherBloodUnitCounts, setOtherBloodUnitCounts] = useState([]);
 
   useEffect(() => {
     makeRow();
@@ -76,7 +75,7 @@ const NetworkListView = () => {
       <Container maxWidth={false}>
         {/* <Toolbar bloodDonors={bloodDonors}/> */}
         <Box mt={3}>
-          <Network counts={otherBloodUnitCounts} banks={otherBloodBanks} />
+          <Network banks={otherBloodBanks} />
         </Box>
       </Container>
     </Page>

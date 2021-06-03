@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import moment from 'moment';
 import PropTypes from 'prop-types';
@@ -9,7 +9,6 @@ import {
   Card,
   CardHeader,
   Chip,
-  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
@@ -27,7 +26,6 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  TextField,
   Tooltip,
   Typography,
   makeStyles
@@ -38,7 +36,6 @@ import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 
 import axios from 'axios';
-import { SignalCellularNullRounded } from '@material-ui/icons';
 
 const token = localStorage.getItem("jwt");
 const user = JSON.parse(localStorage.getItem("user"));
@@ -80,17 +77,17 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
     setSelectedCustomerIds([]);
   }
 
-  const handleSelectAll = (event) => {
-    let newSelectedCustomerIds;
+  // const handleSelectAll = (event) => {
+  //   let newSelectedCustomerIds;
 
-    if (event.target.checked) {
-      newSelectedCustomerIds = requests.map((customer) => customer.id);
-    } else {
-      newSelectedCustomerIds = [];
-    }
+  //   if (event.target.checked) {
+  //     newSelectedCustomerIds = requests.map((customer) => customer.id);
+  //   } else {
+  //     newSelectedCustomerIds = [];
+  //   }
 
-    setSelectedCustomerIds(newSelectedCustomerIds);
-  };
+  //   setSelectedCustomerIds(newSelectedCustomerIds);
+  // };
 
   const handleSelectOne = (event, id) => {
     const selectedIndex = selectedCustomerIds.indexOf(id);
@@ -158,7 +155,7 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
     })
     .catch(error => console.error(`Error: ${error}`));
 
-    var requestToUpdate = requests.filter(request => request.id == selectedCustomerIds[0])[0];
+    var requestToUpdate = requests.filter(request => request.id === selectedCustomerIds[0])[0];
     const currentDate = new Date();
     // gets the oldest, non-expired, unassigned units of the right blood type
     var url = `http://localhost:1337/bloodsupplies?bloodBank.id=${user.bloodBank.id}&bloodDonor.bloodGroup=${requestToUpdate.bloodGroup}&expiration_gt=${currentDate.toISOString()}&usage=unassigned&_sort=expiration:ASC`;
@@ -407,18 +404,18 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
                 <TableCell>
                   <div style={{textAlign: "center"}}>
                     <Chip 
-                      icon={request.status == "canceled" ? <CancelIcon /> 
-                          : (request.deliveryMethod == "dispatch" ? <LocalShippingIcon /> : <FlightTakeoffIcon />)} 
-                      label={request.status == "canceled" ? "N/A" : "Sent"}
+                      icon={request.status === "canceled" ? <CancelIcon /> 
+                          : (request.deliveryMethod === "dispatch" ? <LocalShippingIcon /> : <FlightTakeoffIcon />)} 
+                      label={request.status === "canceled" ? "N/A" : "Sent"}
                       color="default"
                       disabled
-                      style={request.status != "pending" ? {display: "inline-flex"} : {display: "none"}}
+                      style={request.status !== "pending" ? {display: "inline-flex"} : {display: "none"}}
                     />
                     <Tooltip title="Fulfill" placement="top">
                       <IconButton
                         color="primary"
                         size="small"
-                        style={request.status == "pending" ? {display: "inline-flex"} : {display: "none"}}
+                        style={request.status === "pending" ? {display: "inline-flex"} : {display: "none"}}
                         onClick={(event) => {handleClickOpenFulfill(event,request.id)}}
                       >
                         <OpenInBrowserIcon/>
@@ -428,7 +425,7 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
                       <IconButton 
                         color="primary"
                         size="small"
-                        style={request.status == "pending" ? {display: "inline-flex"} : {display: "none"}}
+                        style={request.status === "pending" ? {display: "inline-flex"} : {display: "none"}}
                         onClick={(event) => {handleClickOpenCancel(event,request.id)}}
                       >
                         <CancelIcon/>
@@ -461,15 +458,15 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
                       color="primary" 
                       label={request.status} 
                       size="small" 
-                      style={request.status == "canceled" ? {display: "inline-flex"} : {display: "none"}}
+                      style={request.status === "canceled" ? {display: "inline-flex"} : {display: "none"}}
                       onClick={(event) => {handleClickOpenPopover(event, request)}}
                     />
                   </Tooltip>
                   <Chip 
-                    color={request.status=="pending" ? "primary" : "default"} 
+                    color={request.status==="pending" ? "primary" : "default"} 
                     label={request.status} 
                     size="small" 
-                    style={request.status == "canceled" ? {display: "none"} : {display: "inline-flex"}}
+                    style={request.status === "canceled" ? {display: "none"} : {display: "inline-flex"}}
                   />
                 </TableCell>
                 <TableCell>

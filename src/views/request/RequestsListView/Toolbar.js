@@ -17,7 +17,6 @@ import {
   Select,
   TextField
 } from '@material-ui/core';
-import { Search as SearchIcon } from 'react-feather';
 import axios from 'axios';
 
 const token = localStorage.getItem("jwt");
@@ -56,10 +55,6 @@ const useStyles = makeStyles((theme) => ({
   }
 
 }));
-
-const state = {
-  units: 0
-}
 
 const Toolbar = ({ className, suppliers, ...rest }) => {
   const classes = useStyles();

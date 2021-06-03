@@ -5,14 +5,10 @@ import {
   Box,
   FormGroup,
   Button,
-  Card,
-  CardContent,
   Grid,
   InputLabel,
   Select,
   TextField,
-  InputAdornment,
-  SvgIcon,
   makeStyles,
   Dialog,
   DialogActions,
@@ -21,7 +17,6 @@ import {
   DialogTitle,
   FormControl
 } from '@material-ui/core';
-import { Search as SearchIcon } from 'react-feather';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -90,7 +85,7 @@ const Toolbar = ({ className, donors, ...rest }) => {
         user: user,
         bloodBank: user.bloodBank,
         bloodDonor: donors[formData.get("donorIndex")],
-        usage: (formData.get("usage") == '' ? "unassigned" : formData.get("usage")),
+        usage: (formData.get("usage") === '' ? "unassigned" : formData.get("usage")),
         expiration: expirationDate.toISOString()
       } 
     })
