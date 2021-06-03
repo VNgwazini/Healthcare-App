@@ -17,7 +17,6 @@ import {
   Grid,
   InputLabel,
   Select,
-  MenuItem,
   Table,
   TableBody,
   TableCell,
@@ -84,7 +83,7 @@ const Donors = ({ className, bloodDonors, ...rest }) => {
       var key = pair[0];
       var value = pair[1];
       console.log(key, value);
-      if (value != '') {
+      if (value !== '') {
         object[key] = value;
       }
     }

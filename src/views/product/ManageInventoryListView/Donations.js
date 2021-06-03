@@ -7,7 +7,6 @@ import {
   Box,
   Card,
   Chip,
-  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
@@ -32,7 +31,6 @@ import {
 } from '@material-ui/core';
 import UpdateIcon from '@material-ui/icons/Update';
 import InfoIcon from '@material-ui/icons/Info';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import moment from 'moment';
 
 import axios from 'axios';
@@ -129,17 +127,17 @@ const Donations = ({ className, bloodUnits, donors, ...rest }) => {
     }
   };
 
-  const handleSelectAll = (event) => {
-    let newSelectedCustomerIds;
+  // const handleSelectAll = (event) => {
+  //   let newSelectedCustomerIds;
 
-    if (event.target.checked) {
-      newSelectedCustomerIds = bloodUnits.map((customer) => customer.id);
-    } else {
-      newSelectedCustomerIds = [];
-    }
+  //   if (event.target.checked) {
+  //     newSelectedCustomerIds = bloodUnits.map((customer) => customer.id);
+  //   } else {
+  //     newSelectedCustomerIds = [];
+  //   }
 
-    setSelectedCustomerIds(newSelectedCustomerIds);
-  };
+  //   setSelectedCustomerIds(newSelectedCustomerIds);
+  // };
 
   const handleSelectOne = (event, id) => {
     const selectedIndex = selectedCustomerIds.indexOf(id);
@@ -369,10 +367,10 @@ const Donations = ({ className, bloodUnits, donors, ...rest }) => {
               <TableCell style={{textAlign: "center"}}>
                 <Chip 
                   icon={<UpdateIcon />} 
-                  label={bloodUnit.usage!="external" ? "Update" : "Used"}
-                  color={bloodUnit.usage!="external" ? "primary" : "default"}
+                  label={bloodUnit.usage!=="external" ? "Update" : "Used"}
+                  color={bloodUnit.usage!=="external" ? "primary" : "default"}
                   onClick={(event) => {handleClickOpen(event,bloodUnit.id)}}
-                  disabled={bloodUnit.usage == "external"}
+                  disabled={bloodUnit.usage === "external"}
                 />
               </TableCell>
               <TableCell>

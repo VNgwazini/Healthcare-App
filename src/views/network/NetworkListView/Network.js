@@ -14,11 +14,6 @@ import {
   makeStyles,
 } from '@material-ui/core';
 
-import axios from 'axios';
-
-const token = localStorage.getItem("jwt");
-const user = JSON.parse(localStorage.getItem("user"));
-
 const useStyles = makeStyles((theme) => ({
   root: {},
   avatar: {
@@ -28,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Network = ({ className, banks, ...rest }) => {
   const classes = useStyles();
-  const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
 
@@ -83,7 +77,6 @@ const Network = ({ className, banks, ...rest }) => {
             <TableRow
               hover
               key={bank.id}
-              selected={selectedCustomerIds.indexOf(bank.id) !== -1}
             >
               <TableCell>
                 {bank[0].name}

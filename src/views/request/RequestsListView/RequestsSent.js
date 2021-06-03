@@ -9,7 +9,6 @@ import {
   Card,
   CardHeader,
   Chip,
-  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
@@ -37,7 +36,6 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import UpdateIcon from '@material-ui/icons/Update';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import axios from 'axios';
 
@@ -80,17 +78,17 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
     setSelectedCustomerIds([]);
   }
 
-  const handleSelectAll = (event) => {
-    let newSelectedCustomerIds;
+  // const handleSelectAll = (event) => {
+  //   let newSelectedCustomerIds;
 
-    if (event.target.checked) {
-      newSelectedCustomerIds = requests.map((customer) => customer.id);
-    } else {
-      newSelectedCustomerIds = [];
-    }
+  //   if (event.target.checked) {
+  //     newSelectedCustomerIds = requests.map((customer) => customer.id);
+  //   } else {
+  //     newSelectedCustomerIds = [];
+  //   }
 
-    setSelectedCustomerIds(newSelectedCustomerIds);
-  };
+  //   setSelectedCustomerIds(newSelectedCustomerIds);
+  // };
 
   const handleSelectOne = (event, id) => {
     const selectedIndex = selectedCustomerIds.indexOf(id);
@@ -143,7 +141,7 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
     for (var pair of formData.entries()) {
       var key = pair[0];
       var value = pair[1];
-      if (value != '') {
+      if (value !== '') {
         if (key === "supplierIndex") { 
           key = "supplier"; 
           value = suppliers[value];
@@ -430,18 +428,18 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
                 <TableCell>
                   <div style={{textAlign: "center"}}>
                     <Chip 
-                      icon={request.status == "canceled" ? <CancelIcon /> 
-                          : (request.deliveryMethod == "dispatch" ? <LocalShippingIcon /> : <FlightTakeoffIcon />)} 
-                      label={request.status == "canceled" ? "N/A" : "Sent"}
+                      icon={request.status === "canceled" ? <CancelIcon /> 
+                          : (request.deliveryMethod === "dispatch" ? <LocalShippingIcon /> : <FlightTakeoffIcon />)} 
+                      label={request.status === "canceled" ? "N/A" : "Sent"}
                       color="default"
                       disabled
-                      style={request.status != "pending" ? {display: "inline-flex"} : {display: "none"}}
+                      style={request.status !== "pending" ? {display: "inline-flex"} : {display: "none"}}
                     />
                     <Tooltip title="Update" placement="top">
                       <IconButton
                         color="primary"
                         size="small"
-                        style={request.status == "pending" ? {display: "inline-flex"} : {display: "none"}}
+                        style={request.status === "pending" ? {display: "inline-flex"} : {display: "none"}}
                         onClick={(event) => {handleClickOpenUpdate(event,request.id)}}
                       >
                         <UpdateIcon/>
@@ -451,7 +449,7 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
                       <IconButton 
                         color="primary"
                         size="small"
-                        style={request.status == "pending" ? {display: "inline-flex"} : {display: "none"}}
+                        style={request.status === "pending" ? {display: "inline-flex"} : {display: "none"}}
                         onClick={(event) => {handleClickOpenCancel(event,request.id)}}
                       >
                         <CancelIcon/>
@@ -484,15 +482,15 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
                       color="primary" 
                       label={request.status} 
                       size="small" 
-                      style={request.status == "canceled" ? {display: "inline-flex"} : {display: "none"}}
+                      style={request.status === "canceled" ? {display: "inline-flex"} : {display: "none"}}
                       onClick={(event) => {handleClickOpenPopover(event, request)}}
                     />
                   </Tooltip>
                   <Chip 
-                    color={request.status=="pending" ? "primary" : "default"} 
+                    color={request.status==="pending" ? "primary" : "default"} 
                     label={request.status} 
                     size="small" 
-                    style={request.status == "canceled" ? {display: "none"} : {display: "inline-flex"}}
+                    style={request.status === "canceled" ? {display: "none"} : {display: "inline-flex"}}
                   />
                 </TableCell>
                 <TableCell>

@@ -5,11 +5,7 @@ import {
   Box,
   FormGroup,
   Button,
-  Card,
-  CardContent,
   TextField,
-  InputAdornment,
-  SvgIcon,
   makeStyles,
   Dialog,
   DialogActions,
@@ -19,12 +15,9 @@ import {
   FormControl,
   Grid,
   InputLabel,
-  Select,
-  MenuItem
+  Select
 } from '@material-ui/core';
-import { Search as SearchIcon } from 'react-feather';
 import axios from 'axios';
-import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -49,18 +42,6 @@ const useStyles = makeStyles((theme) => ({
     width: "75%"
   }
 }));
-
-const state = {
-  blood_donor : 'ME',
-  bloodbank : 'LOMA',
-  bloodgroup : 'A+',
-  expiration : 'TOMORROW',
-  request_type : 'URGENT',
-  phone : '(909)583-4392',
-  previous_pregnancies : false,
-  previous_transfusions : false,
-  previous_reaction : false
-}
 
 const token = localStorage.getItem("jwt");
 const user = JSON.parse(localStorage.getItem("user"));
