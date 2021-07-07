@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Box,
   Container,
+  Typography,
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
@@ -121,6 +122,13 @@ const ManageInventoryList = () => {
 
   return (
     <>
+    <Typography
+      align="center"
+      color="secondary"
+      variant="body1"
+    >
+      All data is mocked for demo purposes and does not represent any real people.
+    </Typography>
     <Page
       className={classes.root}
       title="Manage Donations"

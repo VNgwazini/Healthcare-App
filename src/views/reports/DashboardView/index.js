@@ -6,6 +6,7 @@ import {
   Container,
   Divider,
   Grid,
+  Typography,
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
@@ -28,6 +29,14 @@ const Dashboard = () => {
   const classes = useStyles();
   
   return (
+    <>
+    <Typography
+    align="center"
+    color="secondary"
+    variant="body1"
+  >
+    All data is mocked for demo purposes and does not represent any real people.
+  </Typography>
     <Page
       className={classes.root}
       title="Dashboard"
@@ -135,6 +144,7 @@ const Dashboard = () => {
         </Grid>
       </Container>
     </Page>
+    </>
   );
 };
 
