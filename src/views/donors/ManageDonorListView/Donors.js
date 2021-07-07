@@ -27,7 +27,9 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
-
+import { 
+  bloodDonors
+} from  "../../../data"
 import axios from 'axios';
 
 const token = localStorage.jwt;
@@ -50,13 +52,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Donors = ({ className, bloodDonors, ...rest }) => {
+const Donors = ({ className, ...rest }) => {
   const classes = useStyles();
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
   const [open, setOpen] = React.useState(false);
   const [state, setState] = React.useState('');
+  const [data, setData] = useState(bloodDonors);
+
 
   const resetSelectedIDs = () => {
     setSelectedCustomerIds([]);
@@ -139,7 +143,7 @@ const Donors = ({ className, bloodDonors, ...rest }) => {
     setPage(newPage);
   };
 
-  const displayTable = (bloodDonors) => {
+  const displayTable = (data) => {
     return (
       <>
         <Box my={3} mx={3}>
@@ -376,39 +380,39 @@ const Donors = ({ className, bloodDonors, ...rest }) => {
         <TableBody>
         {bloodDonors
         .slice(page * limit, page * limit + limit)
-        .map((bloodDonor) => (
+        .map((data) => (
           <>
             <TableRow
               hover
-              key={bloodDonor.id}
-              selected={selectedCustomerIds.indexOf(bloodDonor.id) !== -1}
+              key={data.id}
+              selected={selectedCustomerIds.indexOf(data.id) !== -1}
             >
               <TableCell style={{textAlign: "center"}}>
-                <Chip icon={<OpenInBrowserIcon />} label="Update" color="secondary" onClick={(event) => {handleClickOpen(event, bloodDonor.id)}}/>
+                <Chip icon={<OpenInBrowserIcon />} label="Update" color="secondary" onClick={(event) => {handleClickOpen(event, data.id)}}/>
               </TableCell>
               <TableCell>
-                {bloodDonor.firstName + " " + bloodDonor.lastName}
+                {data.firstName + " " + data.lastName}
               </TableCell>
               <TableCell>
-                {bloodDonor.phone}
+                {data.phone}
               </TableCell>
               <TableCell>
-                {bloodDonor.email}
+                {data.email}
               </TableCell>
               <TableCell>
-                {bloodDonor.bloodGroup}
+                {data.bloodGroup}
               </TableCell>
               <TableCell>
-                {bloodDonor.sex}
+                {data.sex}
               </TableCell>
               <TableCell>
-                {bloodDonor.previousTransfusions}
+                {data.previousTransfusions}
               </TableCell>
               <TableCell>
-                {bloodDonor.previousReactions}
+                {data.previousReactions}
               </TableCell>
               <TableCell>
-                {bloodDonor.id.slice(17)}
+                {data.id}
               </TableCell>
             </TableRow>
             </>
@@ -426,12 +430,12 @@ const Donors = ({ className, bloodDonors, ...rest }) => {
     >
       <PerfectScrollbar>
         <Box minWidth={1050}>
-          {displayTable(bloodDonors)}
+          {displayTable(data)}
         </Box>
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={bloodDonors.length}
+        count={data.length}
         onChangePage={handlePageChange}
         onChangeRowsPerPage={handleLimitChange}
         page={page}

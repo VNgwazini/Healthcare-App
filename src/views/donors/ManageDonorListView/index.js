@@ -32,25 +32,25 @@ const ManageDonorListView = () => {
   const classes = useStyles();
   const [bloodDonors, setBloodDonors] = useState([]);
 
-  useEffect(() => {
-    getAllBloodDonors();
-  }, []);
+  // useEffect(() => {
+  //   getAllBloodDonors();
+  // }, []);
 
-  const getAllBloodDonors = () => {
-    axios({
-      method: 'GET',
-      url: `http://localhost:1337/blood-donors?bloodBank.id=${user.bloodBank.id}&_sort=createdAt:DESC`,
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-    })
-    //handle success
-    .then((response) => {
-      setBloodDonors(response.data);
-    })
-    //handle error
-    .catch(error => console.error(`Error: ${error}`));
-  }
+  // const getAllBloodDonors = () => {
+  //   axios({
+  //     method: 'GET',
+  //     url: `http://localhost:1337/blood-donors?bloodBank.id=${user.bloodBank.id}&_sort=createdAt:DESC`,
+  //     headers: {
+  //       Authorization: `Bearer ${token}`
+  //     },
+  //   })
+  //   //handle success
+  //   .then((response) => {
+  //     setBloodDonors(response.data);
+  //   })
+  //   //handle error
+  //   .catch(error => console.error(`Error: ${error}`));
+  // }
 
   return (
     <Page
