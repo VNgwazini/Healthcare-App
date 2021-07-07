@@ -52,7 +52,7 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
             </TableHead>
             <TableBody>
               {requestData
-              .slice(0,9)
+              .slice(0,5)
               .map((request, index) => (
                 <TableRow hover key={request.id}>
                 <TableCell>
