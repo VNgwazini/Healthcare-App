@@ -46,48 +46,48 @@ const Dashboard = () => {
                 spacing={1}
               >
                 <Grid container item xs={3}>
-                  <Grid item xs style={{marginRight: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="A+"
                     />
                   </Grid>
-                  <Grid item xs style={{marginLeft: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="A-"
                     />
                   </Grid>
                 </Grid>
                 <Grid container item xs={3}>
-                  <Grid item xs style={{marginRight: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="B+"
                     />
                   </Grid>
-                  <Grid item xs style={{marginLeft: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="B-"
                     />
                   </Grid>
                 </Grid>
                 <Grid container item xs={3}>
-                  <Grid item xs style={{marginRight: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="AB+"
                     />
                   </Grid>
-                  <Grid item xs style={{marginLeft: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="AB-"
                     />
                   </Grid>
                 </Grid>
                 <Grid container item xs={3}>
-                  <Grid item xs style={{marginRight: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="O+"
                     />
                   </Grid>
-                  <Grid item xs style={{marginLeft: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="O-"
                     />

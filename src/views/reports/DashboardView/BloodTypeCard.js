@@ -6,32 +6,20 @@ import {
   CardContent,
   IconButton,
   Tooltip,
-  Typography
+  Typography,
 } from '@material-ui/core';
 import ErrorIcon from '@material-ui/icons/Error';
 import { random } from 'lodash';
 
-// props: bloodType and className only
-// state includes values received from the API, units and expired
-class BloodTypeCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      units: 0,
-      showAlert: false
-    }
-  }
-
   // TODO: make cards clickable so they lead to the inventory page
-  render() {
-    const {bloodType, className, ...rest} = this.props;
+  const BloodTypeCard = ({ className, bloodType, ...rest }) => {
     //to simulate units counts
     const randomCount = random(50);
     //to simulate expired units
     const randomBool = random(1) ? false:true;
+
     return (
       <Card
-        className={className}
         variant="outlined"
         style={{position: 'relative', height: '100%'}}
         {...rest}
@@ -61,8 +49,7 @@ class BloodTypeCard extends React.Component {
         </CardContent>
       </Card>
     );
-  }
-};
+}
 
 BloodTypeCard.propTypes = {
   bloodType: PropTypes.string,
