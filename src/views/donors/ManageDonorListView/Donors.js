@@ -112,6 +112,8 @@ const Donors = ({ className, ...rest }) => {
       })
       //handle error
       .catch(error => console.error(`Error: ${error}`));
+      handleClose();
+      window.location.reload();   
     }
   };
 

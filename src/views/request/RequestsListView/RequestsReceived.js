@@ -140,60 +140,8 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
   };
 
   const handleSubmitFulfill = (props) => {
-    let formData =  new FormData(document.getElementById("fulfillRequest"));
-    var dataObject = {
-      status: "shipped",
-      supplier: user.bloodBank,
-      deliveryMethod: formData.get("deliveryMethod")
-    }
-
-    axios({
-      method: 'PUT',
-      url: `http://localhost:1337/blood-requests/${selectedCustomerIds[0]}`,
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      data: dataObject
-    })
-    .then((response) => {
-      handleCloseFulfill();
-    })
-    .catch(error => console.error(`Error: ${error}`));
-
-    var requestToUpdate = requests.filter(request => request.id === selectedCustomerIds[0])[0];
-    const currentDate = new Date();
-    // gets the oldest, non-expired, unassigned units of the right blood type
-    var url = `http://localhost:1337/bloodsupplies?bloodBank.id=${user.bloodBank.id}&bloodDonor.bloodGroup=${requestToUpdate.bloodGroup}&expiration_gt=${currentDate.toISOString()}&usage=unassigned&_sort=expiration:ASC`;
-    if (url.includes('+')) {
-      url = url.replace('+', '%2B');
-    }
-    axios({
-      method: 'GET',
-      url: url,
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-    .then((response2) => {
-      for (var i = 0; i < requestToUpdate.units; i++) {
-        axios({
-          method: 'PUT',
-          url: `http://localhost:1337/bloodsupplies/${response2.data[i].id}`,
-          headers: {
-            Authorization: `Bearer ${token}`
-          },
-          data: { 
-            bloodRequest: requestToUpdate, 
-            usage: "external" 
-          }
-        })
-        .then((response3) => {
-          console.log(response3.data);
-          window.location.reload();
-        })
-      }
-    })
-    .catch(error => console.error(`Error: ${error}`));
+    handleCloseFulfill();
+    window.location.reload();   
   };
 
   const handleClickOpenCancel = (event, id) => {

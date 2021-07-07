@@ -86,7 +86,7 @@ const Toolbar = ({ className, suppliers, ...rest }) => {
     });
     object["user"] = user;
     object["status"] = "pending";
-    object["requestor"] = user.bloodBank;
+    object["requestor"] = "Demo Bank";
     console.log(object);
 
     axios({
@@ -103,6 +103,8 @@ const Toolbar = ({ className, suppliers, ...rest }) => {
       window.location.reload();
     })
     .catch(error => console.error(`Error: ${error}`));
+    handleClose();
+    window.location.reload();
   };
 
   const [data, setData] = useState(bloodRequests);

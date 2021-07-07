@@ -140,8 +140,8 @@ const Toolbar = ({ className, bloodDonors, ...rest }) => {
           handleClose();
         })
         .catch(error => console.error(`Error: ${error}`));
-    window.location.reload();
-  };
+        handleClose();
+        window.location.reload();  };
 
   const { bloodDonor,bloodBank, bloodGroup, expiration, user, phone, previousPregnancies, previousTransfusions, previousReactions, usage } = state
 

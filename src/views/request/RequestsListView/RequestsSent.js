@@ -141,39 +141,8 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
   };
 
   const handleSubmitUpdate = (props) => {
-    let formData =  new FormData(document.getElementById("updateMultiple"));
-    var object = {};
-    for (var pair of formData.entries()) {
-      var key = pair[0];
-      var value = pair[1];
-      if (value !== '') {
-        if (key === "supplierIndex") { 
-          key = "supplier"; 
-          value = suppliers[value];
-        }
-        object[key] = value;
-      }
-    }
-    console.log(object);
-    for(let i in selectedCustomerIds){
-      console.log(`${i}: `,selectedCustomerIds);
-      axios({
-        method: 'PUT',
-        url: `http://localhost:1337/blood-requests/${selectedCustomerIds[i]}`,
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        data: object
-      })
-      //handle success
-      .then((response) => {
-        console.log(response.data);
-        handleCloseUpdate();      
-      })
-      //handle error
-      .catch(error => console.error(`Error: ${error}`));
-      window.location.reload();
-    }
+      handleCloseUpdate();
+      window.location.reload();  
   };
 
   const handleClickOpenCancel = (event, id) => {

@@ -86,7 +86,7 @@ const Toolbar = ({ className, donors, ...rest }) => {
       },
       data: {
         user: user,
-        bloodBank: user.bloodBank,
+        bloodBank: "Demo Bank",
         bloodDonor: donors[formData.get("donorIndex")],
         usage: (formData.get("usage") === '' ? "unassigned" : formData.get("usage")),
         expiration: expirationDate.toISOString()
@@ -99,6 +99,8 @@ const Toolbar = ({ className, donors, ...rest }) => {
       window.location.reload();
     })
     .catch(error => console.error(`Error: ${error}`));
+    handleClose();
+    window.location.reload();
   };
 
   const user = JSON.parse(localStorage.getItem("user"));
