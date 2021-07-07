@@ -34,59 +34,59 @@ const RequestsListView = () => {
   const [sentReqs, setSentReqs] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
 
-  useEffect(() => {
-    getReceivedRequests();
-    getSentRequests();
-    getAllBloodBanks();
-  }, []);
+  // useEffect(() => {
+  //   getReceivedRequests();
+  //   getSentRequests();
+  //   getAllBloodBanks();
+  // }, []);
 
-  const getReceivedRequests = () => {
-    axios({
-      method: 'GET',
-      url: `http://localhost:1337/blood-requests?supplier.id=${user.bloodBank.id}&requestor.id_ne=${user.bloodBank.id}&_sort=createdAt:DESC`,
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-    })
-    //handle success
-    .then((response) => {
-      setReceivedReqs(response.data);
-    })
-    //handle error
-    .catch(error => console.error(`Error: ${error}`));
-  }
+  // const getReceivedRequests = () => {
+  //   axios({
+  //     method: 'GET',
+  //     url: `http://localhost:1337/blood-requests?supplier.id=${user.bloodBank.id}&requestor.id_ne=${user.bloodBank.id}&_sort=createdAt:DESC`,
+  //     headers: {
+  //       Authorization: `Bearer ${token}`
+  //     },
+  //   })
+  //   //handle success
+  //   .then((response) => {
+  //     setReceivedReqs(response.data);
+  //   })
+  //   //handle error
+  //   .catch(error => console.error(`Error: ${error}`));
+  // }
 
-  const getSentRequests = () => {
-    axios({
-      method: 'GET',
-      url: `http://localhost:1337/blood-requests?requestor.id=${user.bloodBank.id}&supplier.id_ne=${user.bloodBank.id}&_sort=createdAt:DESC`,
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-    })
-    //handle success
-    .then((response) => {
-      setSentReqs(response.data);
-    })
-    //handle error
-    .catch(error => console.error(`Error: ${error}`));
-  }
+  // const getSentRequests = () => {
+  //   axios({
+  //     method: 'GET',
+  //     url: `http://localhost:1337/blood-requests?requestor.id=${user.bloodBank.id}&supplier.id_ne=${user.bloodBank.id}&_sort=createdAt:DESC`,
+  //     headers: {
+  //       Authorization: `Bearer ${token}`
+  //     },
+  //   })
+  //   //handle success
+  //   .then((response) => {
+  //     setSentReqs(response.data);
+  //   })
+  //   //handle error
+  //   .catch(error => console.error(`Error: ${error}`));
+  // }
 
-  const getAllBloodBanks = () => {
-    axios({
-      method: 'GET',
-      url: `http://localhost:1337/bloodbanks?id_ne=${user.bloodBank.id}&_sort=name:ASC`,
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-    })
-    //handle success
-    .then((response) => {
-      setSuppliers(response.data);
-    })
-    //handle error
-    .catch(error => console.error(`Error: ${error}`));
-  }
+  // const getAllBloodBanks = () => {
+  //   axios({
+  //     method: 'GET',
+  //     url: `http://localhost:1337/bloodbanks?id_ne=${user.bloodBank.id}&_sort=name:ASC`,
+  //     headers: {
+  //       Authorization: `Bearer ${token}`
+  //     },
+  //   })
+  //   //handle success
+  //   .then((response) => {
+  //     setSuppliers(response.data);
+  //   })
+  //   //handle error
+  //   .catch(error => console.error(`Error: ${error}`));
+  // }
   
   // TODO: add filtering functionality 
   // like filter by type, request urgency, status, etc.

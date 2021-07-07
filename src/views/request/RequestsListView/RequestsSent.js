@@ -32,6 +32,10 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
+import { 
+  bloodRequests,
+  bloodBanks
+} from  "../../../data"
 import CancelIcon from '@material-ui/icons/Cancel';
 import UpdateIcon from '@material-ui/icons/Update';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
@@ -216,7 +220,10 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
     resetSelectedIDs();
   };
 
-  const displayTable = (requests) => {
+  const [data, setData] = useState(bloodRequests);
+  const [bankData, setbankData] = useState(bloodBanks);
+
+  const displayTable = () => {
     return (
       <>
         <Card>
@@ -282,7 +289,7 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
                             }}
                           >
                             <option aria-label="None" value="" />
-                            {suppliers.map((supplier, index) => 
+                            {bankData.map((supplier, index) => 
                               <option value={index}>{supplier.name}</option>
                             )}
                           </Select>
@@ -416,9 +423,9 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-          {requests
+          {data
             .slice(page * limit, page * limit + limit)
-            .map((request) => (
+            .map((request, index) => (
             <>
               <TableRow
                 hover
@@ -470,7 +477,7 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
                   {request.units}
                 </TableCell>
                 <TableCell>
-                  {request.supplier ? request.supplier.name : "Finding supplier..."}
+                  {bankData[index].name ? bankData[index].name + " County Hospital" : "Finding supplier..."}
                 </TableCell>
                 {/* <TableCell>
                   {request.deliveryMethod}
@@ -497,7 +504,7 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
                   {request.requestType}
                 </TableCell>
                 <TableCell>
-                  {request.id.slice(17)}
+                  {request.id}
                 </TableCell>
               </TableRow>
               </>

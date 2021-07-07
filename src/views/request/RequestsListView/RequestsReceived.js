@@ -30,6 +30,10 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
+import { 
+  bloodRequests,
+  bloodBanks
+} from  "../../../data"
 import CancelIcon from '@material-ui/icons/Cancel';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
@@ -235,8 +239,11 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
     setAnchorEl(null);
     resetSelectedIDs();
   };
+  const [data, setData] = useState(bloodRequests);
+  const [bankData, setbankData] = useState(bloodBanks);
 
-  const displayTable = (requests) => {
+
+  const displayTable = () => {
     return (
       <>
         <Card>
@@ -384,9 +391,9 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-          {requests
+          {data
           .slice(page * limit, page * limit + limit)
-          .map((request) => (
+          .map((request, index) => (
             <>
               <TableRow
                 hover
@@ -446,7 +453,7 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
                   {request.units}
                 </TableCell>
                 <TableCell>
-                  {request.requestor.name}
+                {bankData[index].name ? bankData[index].name + " County Hospital" : "Finding supplier..."}
                 </TableCell>
                 {/* <TableCell>
                   {request.deliveryMethod}
@@ -473,7 +480,7 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
                   {request.requestType}
                 </TableCell>
                 <TableCell>
-                  {request.id.slice(17)}
+                  {request.id}
                 </TableCell>
               </TableRow>
               </>

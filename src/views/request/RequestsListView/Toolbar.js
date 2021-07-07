@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -18,6 +18,10 @@ import {
   TextField
 } from '@material-ui/core';
 import axios from 'axios';
+import { 
+  bloodRequests,
+  bloodBanks
+} from  "../../../data"
 
 const token = localStorage.getItem("jwt");
 const user = JSON.parse(localStorage.getItem("user"));
@@ -101,6 +105,9 @@ const Toolbar = ({ className, suppliers, ...rest }) => {
     .catch(error => console.error(`Error: ${error}`));
   };
 
+  const [data, setData] = useState(bloodRequests);
+  const [bankData, setbankData] = useState(bloodBanks);
+
   return (
     <div
       className={clsx(classes.root, className)}
@@ -176,8 +183,8 @@ const Toolbar = ({ className, suppliers, ...rest }) => {
                         }}
                       >
                         <option aria-label="None" value="" />
-                        {suppliers.map((supplier, index) => 
-                          <option value={index}>{supplier.name}</option>
+                        {bloodBanks.map((supplier, index) => 
+                          <option value={index}>{supplier.name + " County Hospital"}</option>
                         )}
                       </Select>
                     </FormControl>
