@@ -32,40 +32,40 @@ const NetworkListView = () => {
   const classes = useStyles();
   const [otherBloodBanks, setOtherBloodBanks] = useState([]);
 
-  useEffect(() => {
-    makeRow();
-  }, []);
+  // useEffect(() => {
+  //   makeRow();
+  // }, []);
 
-  const makeRow = async () => {
-    var row = [];
-    var rows = [];
-    //get banks
-    const responseBanks = await axios.get(`http://localhost:1337/bloodbanks?id_ne=${user.bloodBank.id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    //handle success
-    //loop through each bank
-    for (var bank of responseBanks.data) {
-      row = [];
-      //push bank  to row
-      row.push(bank);
-      //get count of each blood group
-      for(var bldGrp of BLOODGROUPS){
-        const responseCount = await axios.get(`http://localhost:1337/bloodsupplies/count?bloodBank.id=${bank.id}&bloodDonor.bloodGroup=${bldGrp}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        //push count to row
-        row.push({bloodGroup: bldGrp, count: responseCount.data});
-      }
-        //push array to rows array
-        rows.push(row);
-    }
-    setOtherBloodBanks(rows);
-  }
+  // const makeRow = async () => {
+  //   var row = [];
+  //   var rows = [];
+  //   //get banks
+  //   const responseBanks = await axios.get(`http://localhost:1337/bloodbanks?id_ne=${user.bloodBank.id}`, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  //   //handle success
+  //   //loop through each bank
+  //   for (var bank of responseBanks.data) {
+  //     row = [];
+  //     //push bank  to row
+  //     row.push(bank);
+  //     //get count of each blood group
+  //     for(var bldGrp of BLOODGROUPS){
+  //       const responseCount = await axios.get(`http://localhost:1337/bloodsupplies/count?bloodBank.id=${bank.id}&bloodDonor.bloodGroup=${bldGrp}`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+  //       //push count to row
+  //       row.push({bloodGroup: bldGrp, count: responseCount.data});
+  //     }
+  //       //push array to rows array
+  //       rows.push(row);
+  //   }
+  //   setOtherBloodBanks(rows);
+  // }
 
   return (
     <Page
