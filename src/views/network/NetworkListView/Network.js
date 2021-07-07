@@ -30,6 +30,7 @@ const Network = ({ className, banks, ...rest }) => {
   const classes = useStyles();
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
+  // eslint-disable-next-line
   const [data, setData] = useState(bloodBanks);
 
   const handleLimitChange = (event) => {

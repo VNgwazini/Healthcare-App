@@ -11,7 +11,6 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
-import axios from 'axios';
 import Page from 'src/components/Page';
 
 const useStyles = makeStyles((theme) => ({
@@ -50,25 +49,6 @@ const LoginView = () => {
             })}
             onSubmit={
               (data) => {
-              console.log(data)
-              // axios
-              // .post('http://localhost:1337/auth/local', {
-              //   identifier: "email@example.com",
-              //   password: "Password123"
-              // })
-              // .then(response => {
-              //   // Handle success.
-              //   localStorage.setItem("user", JSON.stringify("Demo User"))
-              //   localStorage.setItem("jwt", "Demo JWT")
-              //   navigate('/app/dashboard', { replace: true });
-              //   window.location.reload();
-              // })
-              // .catch(error => {
-              //   // Handle error.
-              //   console.log('An error occurred:', error.response);
-              //   navigate('/app/dashboard', { replace: true });
-              //   window.location.reload();
-              // });
               navigate('/app/dashboard', { replace: true });
               window.location.reload();
             }

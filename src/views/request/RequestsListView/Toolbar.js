@@ -98,7 +98,6 @@ const Toolbar = ({ className, suppliers, ...rest }) => {
       data: object 
     })
     .then((response) => {
-      console.log(response.data);
       handleClose();
       window.location.reload();
     })
@@ -106,8 +105,9 @@ const Toolbar = ({ className, suppliers, ...rest }) => {
     handleClose();
     window.location.reload();
   };
-
+// eslint-disable-next-line
   const [data, setData] = useState(bloodRequests);
+  // eslint-disable-next-line
   const [bankData, setbankData] = useState(bloodBanks);
 
   return (

@@ -43,7 +43,6 @@ import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 import axios from 'axios';
 
 const token = localStorage.getItem("jwt");
-const user = JSON.parse(localStorage.getItem("user"));
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -188,7 +187,10 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
     setAnchorEl(null);
     resetSelectedIDs();
   };
+
+  // eslint-disable-next-line
   const [data, setData] = useState(bloodRequests);
+  // eslint-disable-next-line
   const [bankData, setbankData] = useState(bloodBanks);
 
 

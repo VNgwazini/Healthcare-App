@@ -60,6 +60,7 @@ const Donors = ({ className, ...rest }) => {
   const [page, setPage] = useState(0);
   const [open, setOpen] = React.useState(false);
   const [state, setState] = React.useState('');
+  // eslint-disable-next-line
   const [data, setData] = useState(bloodDonors);
 
 

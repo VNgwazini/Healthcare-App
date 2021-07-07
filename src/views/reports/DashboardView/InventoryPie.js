@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Doughnut } from 'react-chartjs-2';
 import {
@@ -57,6 +56,7 @@ const BLOODTYPES = ['A%2B', 'A-', 'B%2B', 'B-', 'AB%2B', 'AB-', 'O%2B', 'O-'];
     var dataArr = [];
     var total = 0    
     var typeCounts = [];
+    // eslint-disable-next-line
     for(var bloodType in BLOODTYPES){
       var count = random(50);
       typeCounts.push(count);

@@ -14,14 +14,12 @@ import {
 import {
   BarChart as BarChartIcon,
   BarChart2 as BarChart2Icon,
-  Lock as LockIcon,
   ShoppingBag as ShoppingBagIcon,
   Users as UsersIcon,
   Droplet as DropletIcon
 } from 'react-feather';
 import NavItem from './NavItem';
 
-var userInfo = JSON.parse(localStorage.getItem("user"));
 var user, items;
 
 // the avatar pic is a placeholder for now
@@ -71,33 +69,6 @@ var user, items;
     //   title: 'Settings'
     // }
   ];
-// }
-// else {
-//   user = {
-//     avatar: '/static/images/avatars/usericon.png', // TODO: get relevant user icon
-//     jobTitle: 'Not Logged In',
-//     name: 'Guest'
-//   };
-
-//   items = [
-//     {
-//       href: '/login',
-//       icon: LockIcon,
-//       title: 'Login'
-//     },
-//     // NOT IMPLEMENTED FOR NOW
-//     // {
-//     //   href: '/register',
-//     //   icon: UserPlusIcon,
-//     //   title: 'Register'
-//     // },
-//     // {
-//     //   href: '/404',
-//     //   icon: AlertCircleIcon,
-//     //   title: 'Error'
-//     // }
-//   ];
-// }
 
 const useStyles = makeStyles(() => ({
   mobileDrawer: {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -7,12 +7,8 @@ import {
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import Toolbar from './Toolbar';
-import axios from 'axios';
 import RequestsReceived from './RequestsReceived';
 import RequestsSent from './RequestsSent';
-
-const token = localStorage.getItem("jwt");
-const user = JSON.parse(localStorage.getItem("user"));
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,8 +27,11 @@ const useStyles = makeStyles((theme) => ({
 
 const RequestsListView = () => {
   const classes = useStyles();
+  // eslint-disable-next-line
   const [receivedReqs, setReceivedReqs] = useState([]);
+  // eslint-disable-next-line
   const [sentReqs, setSentReqs] = useState([]);
+  // eslint-disable-next-line
   const [suppliers, setSuppliers] = useState([]);
 
   // useEffect(() => {

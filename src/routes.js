@@ -13,8 +13,6 @@ import NetworkListView from 'src/views/network/NetworkListView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
 
-let isLoggedIn = localStorage.getItem("jwt");
-
 const routes = [
   {
     path: 'app',

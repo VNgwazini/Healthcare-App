@@ -189,8 +189,9 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
     setAnchorEl(null);
     resetSelectedIDs();
   };
-
+// eslint-disable-next-line
   const [data, setData] = useState(bloodRequests);
+  // eslint-disable-next-line
   const [bankData, setbankData] = useState(bloodBanks);
 
   const displayTable = () => {

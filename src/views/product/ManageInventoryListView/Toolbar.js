@@ -93,7 +93,6 @@ const Toolbar = ({ className, donors, ...rest }) => {
       } 
     })
     .then((response) => {
-      console.log(response.data);
       handleClose();
       setCurDonor('');
       window.location.reload();
@@ -104,6 +103,7 @@ const Toolbar = ({ className, donors, ...rest }) => {
   };
 
   const user = JSON.parse(localStorage.getItem("user"));
+  // eslint-disable-next-line
   const [bloodDonorData, setBloodDonorData] = useState(bloodDonors);
 
   return (

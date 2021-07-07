@@ -210,8 +210,9 @@ const Donations = ({ className, ...rest }) => {
     setOpenInfo(false);
     resetSelectedIDs();
   };
-
+// eslint-disable-next-line
   const [data, setData] = useState(bloodUnits);
+  // eslint-disable-next-line
   const [bloodDonorData, setBloodDonorData] = useState(bloodDonors);
   const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-","O+", "O-"]
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -6,13 +6,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
-import axios from 'axios';
 import Network from './Network';
-
-
-const token = localStorage.getItem("jwt");
-const user = JSON.parse(localStorage.getItem("user"));
-const BLOODGROUPS = ['A%2B', 'A-','B%2B', 'B-', 'AB%2B', 'AB-', 'O%2B', 'O-'];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NetworkListView = () => {
   const classes = useStyles();
+  // eslint-disable-next-line
   const [otherBloodBanks, setOtherBloodBanks] = useState([]);
 
   // useEffect(() => {

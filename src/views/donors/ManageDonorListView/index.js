@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -7,12 +7,7 @@ import {
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import Toolbar from './Toolbar';
-import axios from 'axios';
 import Donors from './Donors';
-
-
-const token = localStorage.jwt;
-var user = JSON.parse(localStorage.getItem("user"));
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ManageDonorListView = () => {
   const classes = useStyles();
+  // eslint-disable-next-line
   const [bloodDonors, setBloodDonors] = useState([]);
 
   // useEffect(() => {

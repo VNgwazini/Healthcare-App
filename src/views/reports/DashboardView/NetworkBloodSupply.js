@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Bar } from 'react-chartjs-2';
 import {
@@ -16,22 +15,26 @@ import {
   bloodUnits,
   bloodBanks
 } from  "../../../data"
-import { random, slice } from 'lodash';
+import { random } from 'lodash';
 
   const NetworkBloodSupply = ({ className, ...rest }) => {
-
+    // eslint-disable-next-line
     const [bloodUnitData, setbloodUnitData] = useState(bloodUnits);
+    // eslint-disable-next-line
     const [bloodBankData, setBloodBankData] = useState(bloodBanks);
     const BLOODTYPES = ['A%2B', 'A-', 'B%2B', 'B-', 'AB%2B', 'AB-', 'O%2B', 'O-'];
     var bankNames = [];
     var network = [];
+    // eslint-disable-next-line
   {bloodBankData
     .slice(0,7)
     .map((bank, index) => (
       bankNames.push(bank.name + " Hospital")
     ))}
+    // eslint-disable-next-line
     for(var bank in  bankNames){
       var typeCounts = [];
+      // eslint-disable-next-line
       for(var bloodType in BLOODTYPES){
         typeCounts.push(random(50));
       }
