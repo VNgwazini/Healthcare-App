@@ -80,7 +80,7 @@ const RequestsSent = ({ className, requests, ...rest }) => {
           endIcon={<ArrowRightIcon />}
           size="small"
           variant="text"
-          href="http://localhost:3000/app/manage_requests"
+          href="/app/manage_requests"
         >
           View all
         </Button>

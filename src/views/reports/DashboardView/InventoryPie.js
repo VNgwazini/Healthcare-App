@@ -210,7 +210,7 @@ const BLOODTYPES = ['A%2B', 'A-', 'B%2B', 'B-', 'AB%2B', 'AB-', 'O%2B', 'O-'];
           endIcon={<ArrowRightIcon />}
           size="small"
           variant="text"
-          href="http://localhost:3000/app/manage_inventory"
+          href="/app/manage_inventory"
         >
           View details
         </Button>
