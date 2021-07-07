@@ -26,11 +26,11 @@ var user, items;
 
 // the avatar pic is a placeholder for now
 // src: https://toppng.com/photo/201156/clip-art-black-and-white-stock-donate-blood-clipart-blood-donation-icon
-if (localStorage.getItem("jwt")) {
+// if (localStorage.getItem("jwt")) {
   user = {
     avatar: '/static/images/avatars/usericon.png',
-    jobTitle: userInfo.bloodBank.name,
-    name: userInfo.username
+    jobTitle: "Local Blood Bank",
+    name: "Demo User"
   };
 
   items = [
@@ -71,33 +71,33 @@ if (localStorage.getItem("jwt")) {
     //   title: 'Settings'
     // }
   ];
-}
-else {
-  user = {
-    avatar: '/static/images/avatars/usericon.png', // TODO: get relevant user icon
-    jobTitle: 'Not Logged In',
-    name: 'Guest'
-  };
+// }
+// else {
+//   user = {
+//     avatar: '/static/images/avatars/usericon.png', // TODO: get relevant user icon
+//     jobTitle: 'Not Logged In',
+//     name: 'Guest'
+//   };
 
-  items = [
-    {
-      href: '/login',
-      icon: LockIcon,
-      title: 'Login'
-    },
-    // NOT IMPLEMENTED FOR NOW
-    // {
-    //   href: '/register',
-    //   icon: UserPlusIcon,
-    //   title: 'Register'
-    // },
-    // {
-    //   href: '/404',
-    //   icon: AlertCircleIcon,
-    //   title: 'Error'
-    // }
-  ];
-}
+//   items = [
+//     {
+//       href: '/login',
+//       icon: LockIcon,
+//       title: 'Login'
+//     },
+//     // NOT IMPLEMENTED FOR NOW
+//     // {
+//     //   href: '/register',
+//     //   icon: UserPlusIcon,
+//     //   title: 'Register'
+//     // },
+//     // {
+//     //   href: '/404',
+//     //   icon: AlertCircleIcon,
+//     //   title: 'Error'
+//     // }
+//   ];
+// }
 
 const useStyles = makeStyles(() => ({
   mobileDrawer: {

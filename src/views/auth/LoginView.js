@@ -41,32 +41,38 @@ const LoginView = () => {
         <Container maxWidth="sm">
           <Formik
             initialValues={{
-              email: 'email@example.com',
-              password: 'Password123'
+              email: 'D3moEmai1@example.com',
+              password: 'P@$sW0rdE2!'
             }}
             validationSchema={Yup.object().shape({
               email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
               password: Yup.string().max(255).required('Password is required')
             })}
-            onSubmit={(data) => {
+            onSubmit={
+              (data) => {
               console.log(data)
-              axios
-              .post('http://localhost:1337/auth/local', {
-                identifier: data.email,
-                password: data.password
-              })
-              .then(response => {
-                // Handle success.
-                localStorage.setItem("user", JSON.stringify(response.data.user))
-                localStorage.setItem("jwt", response.data.jwt)
-                navigate('/app/dashboard', { replace: true });
-                window.location.reload();
-              })
-              .catch(error => {
-                // Handle error.
-                console.log('An error occurred:', error.response);
-              });
-            }}
+              // axios
+              // .post('http://localhost:1337/auth/local', {
+              //   identifier: "email@example.com",
+              //   password: "Password123"
+              // })
+              // .then(response => {
+              //   // Handle success.
+              //   localStorage.setItem("user", JSON.stringify("Demo User"))
+              //   localStorage.setItem("jwt", "Demo JWT")
+              //   navigate('/app/dashboard', { replace: true });
+              //   window.location.reload();
+              // })
+              // .catch(error => {
+              //   // Handle error.
+              //   console.log('An error occurred:', error.response);
+              //   navigate('/app/dashboard', { replace: true });
+              //   window.location.reload();
+              // });
+              navigate('/app/dashboard', { replace: true });
+              window.location.reload();
+            }
+          }
           >
             {({
               errors,
@@ -90,7 +96,7 @@ const LoginView = () => {
                     gutterBottom
                     variant="body2"
                   >
-                    Sign in below.
+                    (For demo purposes only. Please click "Sign In Now" to access site!)
                   </Typography>
                 </Box>
                 <Grid
