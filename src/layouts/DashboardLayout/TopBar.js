@@ -51,7 +51,7 @@ const TopBar = ({
           onClick={() => {
             localStorage.removeItem("jwt");
             localStorage.removeItem("user");
-            navigate('/login', { replace: true });
+            navigate('/', { replace: true });
             window.location.reload();
           }}>
             Logout
