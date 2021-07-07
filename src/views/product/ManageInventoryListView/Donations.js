@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import "./custom.css"
 import {
   Button,
   Box,
@@ -328,7 +329,7 @@ const Donations = ({ className, ...rest }) => {
           </DialogContent>  
         </Dialog>
       </Box>
-      <Table style={{width: "101%"}}>
+      <Table style={{width: "101%"}} className="custom-table">
       <TableHead>
           <TableRow>
             <TableCell style={{textAlign: "center"}}>

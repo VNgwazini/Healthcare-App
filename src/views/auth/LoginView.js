@@ -96,7 +96,15 @@ const LoginView = () => {
                     gutterBottom
                     variant="body2"
                   >
-                    (For demo purposes only. Please click "Sign In Now" to access site!)
+                    (For demo purposes only.)
+                  </Typography>
+                  &nbsp;
+                  <Typography
+                    color="textSecondary"
+                    gutterBottom
+                    variant="body1"
+                  >
+                    Please click "Sign In Now" to skip login.
                   </Typography>
                 </Box>
                 <Grid
@@ -121,6 +129,7 @@ const LoginView = () => {
                   type="email"
                   value={values.email}
                   variant="outlined"
+                  disabled="true"
                 />
                 <TextField
                   error={Boolean(touched.password && errors.password)}
@@ -134,6 +143,7 @@ const LoginView = () => {
                   type="password"
                   value={values.password}
                   variant="outlined"
+                  disabled="true"
                 />
                 <Box my={2}>
                   <Button

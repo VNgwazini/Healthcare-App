@@ -16,6 +16,7 @@ import {
 import { 
   bloodBanks
 } from  "../../../data"
+import "./custom.css"
 import { random } from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +43,7 @@ const Network = ({ className, banks, ...rest }) => {
   const displayTable = () => {
     return (
       <>
-      <Table>
+      <Table className="custom-table">
       <TableHead>
           <TableRow>
           <TableCell style={{width: "5%"}}>
@@ -132,7 +133,7 @@ const Network = ({ className, banks, ...rest }) => {
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={banks.length}
+        count={data.length}
         onChangePage={handlePageChange}
         onChangeRowsPerPage={handleLimitChange}
         page={page}

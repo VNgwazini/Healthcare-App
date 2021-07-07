@@ -34,6 +34,7 @@ import {
   bloodRequests,
   bloodBanks
 } from  "../../../data"
+import "./custom.css"
 import CancelIcon from '@material-ui/icons/Cancel';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
@@ -344,7 +345,7 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
         >
           <Typography className={classes.typography}>Reason: {state.cancellationReason}</Typography>
         </Popover>
-        <Table>
+        <Table className="custom-table">
           <TableHead>
             <TableRow>
               {/* <TableCell padding="checkbox">
@@ -453,7 +454,7 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
                   {request.units}
                 </TableCell>
                 <TableCell>
-                {bankData[index].name ? bankData[index].name + " County Hospital" : "Finding supplier..."}
+                {bankData[index%bankData.length].name ? bankData[index%bankData.length].name + " County Hospital" : "Finding supplier..."}
                 </TableCell>
                 {/* <TableCell>
                   {request.deliveryMethod}
@@ -504,7 +505,7 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={requests.length}
+        count={data.length}
         onChangePage={handlePageChange}
         onChangeRowsPerPage={handleLimitChange}
         page={page}

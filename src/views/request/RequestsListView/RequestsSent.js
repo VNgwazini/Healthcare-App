@@ -36,6 +36,7 @@ import {
   bloodRequests,
   bloodBanks
 } from  "../../../data"
+import "./custom.css"
 import CancelIcon from '@material-ui/icons/Cancel';
 import UpdateIcon from '@material-ui/icons/Update';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
@@ -387,7 +388,7 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
         >
           <Typography className={classes.typography}>Reason: {state.cancellationReason}</Typography>
         </Popover>
-        <Table>
+        <Table className="custom-table">
           <TableHead>
             <TableRow>
               <TableCell style={{textAlign: "center"}}>
@@ -477,7 +478,7 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
                   {request.units}
                 </TableCell>
                 <TableCell>
-                  {bankData[index].name ? bankData[index].name + " County Hospital" : "Finding supplier..."}
+                  {bankData[index%bankData.length].name ? bankData[index%bankData.length].name + " County Hospital" : "Finding supplier..."}
                 </TableCell>
                 {/* <TableCell>
                   {request.deliveryMethod}
@@ -528,7 +529,7 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={requests.length}
+        count={data.length}
         onChangePage={handlePageChange}
         onChangeRowsPerPage={handleLimitChange}
         page={page}

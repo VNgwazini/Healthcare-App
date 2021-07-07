@@ -1,0 +1,6 @@
+@media (max-width: 768px){
+  .custom-table{
+    height: calc(100vh);
+    -webkit-overflow-scrolling: touch,
+  }
+}

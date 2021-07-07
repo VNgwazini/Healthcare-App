@@ -30,6 +30,7 @@ import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
 import { 
   bloodDonors
 } from  "../../../data"
+import "./custom.css"
 import axios from 'axios';
 
 const token = localStorage.jwt;
@@ -345,7 +346,7 @@ const Donors = ({ className, ...rest }) => {
               </form>
             </Dialog>
         </Box>
-      <Table>
+      <Table className="custom-table">
       <TableHead>
           <TableRow>
             <TableCell style={{textAlign: "center"}}>
