@@ -14,52 +14,57 @@ import {
 } from '@material-ui/core';
 import OpacityIcon from '@material-ui/icons/Opacity';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import { random } from 'lodash';
 
 const BLOODTYPES = ['A%2B', 'A-', 'B%2B', 'B-', 'AB%2B', 'AB-', 'O%2B', 'O-'];
 
-class InventoryPie extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      units: []
-    }
-  }
+// class InventoryPie extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       units: []
+//     }
+//   }
 
-  componentDidMount() {
-    const token = localStorage.getItem("jwt");
-    const user = JSON.parse(localStorage.getItem("user"));
+//   componentDidMount() {
+//     const token = localStorage.getItem("jwt");
+//     const user = JSON.parse(localStorage.getItem("user"));
 
-    const getData = async () => {
-      var url;
-      var tempArr = [];
-      for (const i in BLOODTYPES) {
-        url = `http://localhost:1337/bloodsupplies?bloodBank.id=${user.bloodBank.id}&bloodDonor.bloodGroup=${BLOODTYPES[i]}&usage=unassigned`;
-        const response = await axios.get(url, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        tempArr.push(response.data.length);
-        this.setState({
-          units: tempArr
-        });
-      }
-    }
+//     const getData = async () => {
+//       var url;
+//       var tempArr = [];
+//       for (const i in BLOODTYPES) {
+//         url = `http://localhost:1337/bloodsupplies?bloodBank.id=${user.bloodBank.id}&bloodDonor.bloodGroup=${BLOODTYPES[i]}&usage=unassigned`;
+//         const response = await axios.get(url, {
+//           headers: {
+//             Authorization: `Bearer ${token}`,
+//           },
+//         });
+//         tempArr.push(response.data.length);
+//         this.setState({
+//           units: tempArr
+//         });
+//       }
+//     }
     
-    if (user) {
-      getData();
-    }
-  }
+//     if (user) {
+//       getData();
+//     }
+//   }
 
-  render() {
-    const {className, ...rest} = this.props;
+  const InventoryPie = ({ className, ...rest }) => {
 
     var dataArr = [];
-    var total = this.state.units.reduce(function(a, b){
-      return a + b;
-    }, 0);
-    for (const i in this.state.units) {
-      dataArr.push(Math.round(this.state.units[i] / total * 100));
+    var total = 0    
+    var typeCounts = [];
+    for(var bloodType in BLOODTYPES){
+      var count = random(50);
+      typeCounts.push(count);
+      total = total + count;
+    }
+    
+    for (const i in typeCounts) {
+      dataArr.push(Math.round(typeCounts[i] / total * 100));
     }
 
     const data = {
@@ -146,74 +151,73 @@ class InventoryPie extends React.Component {
       responsive: true
     };
   
-    return (
-      <Card
-        className={className}
-        style={{height: '100%'}}
-        {...rest}
-      >
-        <CardHeader title="Inventory Overview"/>
-        <Divider />
-        <CardContent>
-          <Box
-            height={300}
-            position="relative"
-          >
-            <Doughnut
-              data={data}
-              options={options}
-            />
-          </Box>
-          <Box
-            display="flex"
-            justifyContent="center"
-            mt={2}
-          >
-            {devices.map(({
-              color,
-              icon: Icon,
-              title,
-              value
-            }) => (
-              <Box
-                key={title}
-                p={1}
-                textAlign="center"
-              >
-                <Icon color="action" />
-                <Typography
-                  color="textPrimary"
-                  variant="body1"
-                >
-                  {title}
-                </Typography>
-                <Typography
-                  style={{ color }}
-                  variant="h4"
-                >
-                  {value}
-                  %
-                </Typography>
-              </Box>
-            ))}
-          </Box>
-        </CardContent>
-        <Divider />
-        <Box display="flex" justifyContent="flex-end" p={1}>
-          <Button
-            color="primary"
-            endIcon={<ArrowRightIcon />}
-            size="small"
-            variant="text"
-            href="http://localhost:3000/app/manage_inventory"
-          >
-            View details
-          </Button>
+  return (
+    <Card
+      className={className}
+      style={{height: '100%'}}
+      {...rest}
+    >
+      <CardHeader title="Inventory Overview"/>
+      <Divider />
+      <CardContent>
+        <Box
+          height={300}
+          position="relative"
+        >
+          <Doughnut
+            data={data}
+            options={options}
+          />
         </Box>
-      </Card>
-    );
-  }
-} 
+        <Box
+          display="flex"
+          justifyContent="center"
+          mt={2}
+        >
+          {devices.map(({
+            color,
+            icon: Icon,
+            title,
+            value
+          }) => (
+            <Box
+              key={title}
+              p={1}
+              textAlign="center"
+            >
+              <Icon color="action" />
+              <Typography
+                color="textPrimary"
+                variant="body1"
+              >
+                {title}
+              </Typography>
+              <Typography
+                style={{ color }}
+                variant="h4"
+              >
+                {value}
+                %
+              </Typography>
+            </Box>
+          ))}
+        </Box>
+      </CardContent>
+      <Divider />
+      <Box display="flex" justifyContent="flex-end" p={1}>
+        <Button
+          color="primary"
+          endIcon={<ArrowRightIcon />}
+          size="small"
+          variant="text"
+          href="http://localhost:3000/app/manage_inventory"
+        >
+          View details
+        </Button>
+      </Box>
+    </Card>
+  );
+}
 
 InventoryPie.propTypes = {
   className: PropTypes.string
