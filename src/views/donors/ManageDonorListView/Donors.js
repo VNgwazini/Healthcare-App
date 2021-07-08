@@ -165,7 +165,7 @@ const Donors = ({ className, ...rest }) => {
                           <FormControl className={classes.formControl}>
                             <TextField
                               id="firstName"
-                              label="NEW First Name"
+                              label="New First Name"
                               name="firstName"
                               type="text"
                               onChange={handleChange}
@@ -180,7 +180,7 @@ const Donors = ({ className, ...rest }) => {
                           <FormControl className={classes.formControl}>
                             <TextField
                               id="lastName"
-                              label="NEW Last Name"
+                              label="New Last Name"
                               name="lastName"
                               type="text"
                               onChange={handleChange}
@@ -195,7 +195,7 @@ const Donors = ({ className, ...rest }) => {
                           <FormControl className={classes.formControl}>
                             <TextField
                               id="phone"
-                              label="NEW Phone"
+                              label="New Phone"
                               name="phone"
                               type="text"
                               helperText="Only enter numbers"
@@ -212,7 +212,7 @@ const Donors = ({ className, ...rest }) => {
                           <FormControl className={classes.formControl}>
                             <TextField
                               id="email"
-                              label="NEW Email"
+                              label="New Email"
                               name="email"
                               type="text"
                               value={state.email}
@@ -227,7 +227,7 @@ const Donors = ({ className, ...rest }) => {
                         <Grid item xs={6}>
                           <FormControl className={classes.formControl}>
                             <InputLabel shrink htmlFor="bloodGroup">
-                              NEW Blood Group
+                              New Blood Group
                             </InputLabel>
                             <Select
                               native
@@ -254,7 +254,7 @@ const Donors = ({ className, ...rest }) => {
                         <Grid item xs={6}>
                           <FormControl className={classes.formControl}>
                             <InputLabel shrink htmlFor="sex">
-                              NEW Sex
+                              New Sex
                             </InputLabel>
                             <Select
                               native
@@ -275,7 +275,7 @@ const Donors = ({ className, ...rest }) => {
                         <Grid item xs={6}>
                           <FormControl className={classes.formControl}>
                             <InputLabel shrink htmlFor="previousPregnancies">
-                              NEW Prev. Pregnancies
+                              New Prev. Pregnancies
                             </InputLabel>
                             <Select
                               native
@@ -296,7 +296,7 @@ const Donors = ({ className, ...rest }) => {
                         <Grid item xs={6}>
                           <FormControl className={classes.formControl}>
                             <InputLabel shrink htmlFor="previousTransfusions">
-                             NEW Prev. Transfusions
+                             New Prev. Transfusions
                             </InputLabel>
                             <Select
                               native
@@ -317,7 +317,7 @@ const Donors = ({ className, ...rest }) => {
                         <Grid item xs={6}>
                           <FormControl className={classes.formControl}>
                             <InputLabel shrink htmlFor="previousReactions">
-                             NEW Prev. Reactions
+                             New Prev. Reactions
                             </InputLabel>
                             <Select
                               native
