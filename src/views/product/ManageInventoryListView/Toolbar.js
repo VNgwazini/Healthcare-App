@@ -26,28 +26,28 @@ import {
 const token = localStorage.jwt;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    overflowX: "auto"
-  },
+  root: {},
   importButton: {
     marginRight: theme.spacing(1)
   },
   exportButton: {
     marginRight: theme.spacing(1)
   },
-  formControl: {},
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    width: "100%"
+  },
   selectEmpty: {
     marginTop: theme.spacing(1),
   },
-  textField: {
-    width: "200px"
-  },
   selectField: {
-    width: "200px"
+    width: "75%"
+  },
+  textField: {
+    width: "75%"
   }
 }));
-
 const Toolbar = ({ className, donors, ...rest }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);

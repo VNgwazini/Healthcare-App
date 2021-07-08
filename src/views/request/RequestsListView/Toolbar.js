@@ -27,10 +27,7 @@ const token = localStorage.getItem("jwt");
 const user = JSON.parse(localStorage.getItem("user"));
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    overflowX: "auto"
-  },
+  root: {},
   importButton: {
     marginRight: theme.spacing(1)
   },
@@ -38,26 +35,18 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1)
   },
   formControl: {
-    // margin: theme.spacing(1),
+    margin: theme.spacing(1),
     minWidth: 120,
     width: "100%"
   },
   selectEmpty: {
-    marginTop: theme.spacing(1),
   },
   selectField: {
-    width: "200px",
-    marginBottom: theme.spacing(2)
+    width: "100%"
   },
   textField: {
-    width: "200px",
-    marginBottom: theme.spacing(2)
-  },
-  table: {
-    width: "100%",
-    overflowX: "auto"
+    width: "100%"
   }
-
 }));
 
 const Toolbar = ({ className, suppliers, ...rest }) => {
@@ -133,12 +122,11 @@ const Toolbar = ({ className, suppliers, ...rest }) => {
                   All fields are required.
                 </DialogContentText>
                 <Grid container spacing={2}>
-                  <Grid item xs={6}>
+                <Grid item xs={6}>
                     <FormControl required>
-                      <InputLabel htmlFor="bloodGroup">Blood Group</InputLabel>
+                      <InputLabel htmlFor="bloodGroup">Group</InputLabel>
                       <Select
                         native
-                        label="Blood Group"
                         onChange={handleChange}
                         className={classes.selectField}
                         inputProps={{
@@ -155,6 +143,7 @@ const Toolbar = ({ className, suppliers, ...rest }) => {
                         <option value="AB-">AB-</option>
                         <option value="O+">O+</option>
                         <option value="O-">O-</option>
+                        <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
                       </Select>
                     </FormControl>
                   </Grid>
@@ -193,7 +182,7 @@ const Toolbar = ({ className, suppliers, ...rest }) => {
                   </Grid>
                   <Grid item xs={6}>
                     <FormControl required>
-                      <InputLabel htmlFor="requestType">Request Type</InputLabel>
+                      <InputLabel htmlFor="requestType">Request</InputLabel>
                       <Select
                         native
                         onChange={handleChange}
@@ -208,6 +197,7 @@ const Toolbar = ({ className, suppliers, ...rest }) => {
                         <option value="urgent">urgent</option>
                         <option value="standard">standard</option>
                         <option value="group_supply">low</option>
+                        <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
                       </Select>
                     </FormControl>
                   </Grid>

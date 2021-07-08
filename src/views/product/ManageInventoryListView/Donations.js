@@ -47,13 +47,17 @@ const useStyles = makeStyles((theme) => ({
   root: {},
   avatar: {
     marginRight: theme.spacing(2)
-  }, 
-  formControl: {},
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    width: "100%"
+  },
   selectField: {
-    width: "200px"
+    width: "75%"
   },
   textField: {
-    width: "200px"
+    width: "75%"
   }
 }));
 
@@ -233,7 +237,7 @@ const Donations = ({ className, ...rest }) => {
               <Grid container spacing={2}>
                 <Grid item xs={6}>
                   <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="donorIndex">NEW Donor</InputLabel>
+                    <InputLabel htmlFor="donorIndex">New Donor</InputLabel>
                     <Select
                       native
                       onChange={handleDonorChange}
@@ -253,7 +257,7 @@ const Donations = ({ className, ...rest }) => {
                 <Grid item xs={6}>
                   <FormControl className={classes.formControl}>
                     <TextField
-                      label="NEW Donor's Blood Group"
+                      label="New Donor's Blood Group"
                       value={curDonor.bloodGroup}
                       className={classes.textField}
                       InputLabelProps={{
@@ -267,7 +271,7 @@ const Donations = ({ className, ...rest }) => {
                   <FormControl className={classes.formControl}>
                     <TextField
                       id="expiration"
-                      label="NEW Expiration Date"
+                      label="New Expiration Date"
                       name="expiration"
                       type="date"
                       value={state.expiration}
@@ -281,7 +285,7 @@ const Donations = ({ className, ...rest }) => {
                 </Grid>
                 <Grid item xs={6}>
                   <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="usage">NEW Usage</InputLabel>
+                    <InputLabel htmlFor="usage">New Usage</InputLabel>
                     <Select
                       native
                       onChange={handleChange}
