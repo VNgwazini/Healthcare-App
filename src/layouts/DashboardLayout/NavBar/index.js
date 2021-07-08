@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Avatar,
@@ -14,23 +14,21 @@ import {
 import {
   BarChart as BarChartIcon,
   BarChart2 as BarChart2Icon,
-  Lock as LockIcon,
   ShoppingBag as ShoppingBagIcon,
   Users as UsersIcon,
   Droplet as DropletIcon
 } from 'react-feather';
 import NavItem from './NavItem';
 
-var userInfo = JSON.parse(localStorage.getItem("user"));
 var user, items;
 
 // the avatar pic is a placeholder for now
 // src: https://toppng.com/photo/201156/clip-art-black-and-white-stock-donate-blood-clipart-blood-donation-icon
-if (localStorage.getItem("jwt")) {
+// if (localStorage.getItem("jwt")) {
   user = {
     avatar: '/static/images/avatars/usericon.png',
-    jobTitle: userInfo.bloodBank.name,
-    name: userInfo.username
+    jobTitle: "Local Blood Bank",
+    name: "Demo User"
   };
 
   items = [
@@ -71,33 +69,6 @@ if (localStorage.getItem("jwt")) {
     //   title: 'Settings'
     // }
   ];
-}
-else {
-  user = {
-    avatar: '/static/images/avatars/usericon.png', // TODO: get relevant user icon
-    jobTitle: 'Not Logged In',
-    name: 'Guest'
-  };
-
-  items = [
-    {
-      href: '/login',
-      icon: LockIcon,
-      title: 'Login'
-    },
-    // NOT IMPLEMENTED FOR NOW
-    // {
-    //   href: '/register',
-    //   icon: UserPlusIcon,
-    //   title: 'Register'
-    // },
-    // {
-    //   href: '/404',
-    //   icon: AlertCircleIcon,
-    //   title: 'Error'
-    // }
-  ];
-}
 
 const useStyles = makeStyles(() => ({
   mobileDrawer: {
@@ -131,9 +102,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
       <Box alignItems="center" display="flex" flexDirection="column" p={2}>
         <Avatar
           className={classes.avatar}
-          component={RouterLink}
           src={user.avatar}
-          to="/app/account"
         />
         <Typography className={classes.name} color="textPrimary" variant="h5">
           {user.name}

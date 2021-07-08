@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -18,6 +18,10 @@ import {
   TextField
 } from '@material-ui/core';
 import axios from 'axios';
+import { 
+  bloodRequests,
+  bloodBanks
+} from  "../../../data"
 
 const token = localStorage.getItem("jwt");
 const user = JSON.parse(localStorage.getItem("user"));
@@ -82,7 +86,7 @@ const Toolbar = ({ className, suppliers, ...rest }) => {
     });
     object["user"] = user;
     object["status"] = "pending";
-    object["requestor"] = user.bloodBank;
+    object["requestor"] = "Demo Bank";
     console.log(object);
 
     axios({
@@ -94,12 +98,17 @@ const Toolbar = ({ className, suppliers, ...rest }) => {
       data: object 
     })
     .then((response) => {
-      console.log(response.data);
       handleClose();
       window.location.reload();
     })
     .catch(error => console.error(`Error: ${error}`));
+    handleClose();
+    window.location.reload();
   };
+// eslint-disable-next-line
+  const [data, setData] = useState(bloodRequests);
+  // eslint-disable-next-line
+  const [bankData, setbankData] = useState(bloodBanks);
 
   return (
     <div
@@ -176,8 +185,8 @@ const Toolbar = ({ className, suppliers, ...rest }) => {
                         }}
                       >
                         <option aria-label="None" value="" />
-                        {suppliers.map((supplier, index) => 
-                          <option value={index}>{supplier.name}</option>
+                        {bloodBanks.map((supplier, index) => 
+                          <option value={index}>{supplier.name + " County Hospital"}</option>
                         )}
                       </Select>
                     </FormControl>

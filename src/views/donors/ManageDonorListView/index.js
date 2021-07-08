@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
+  Typography,
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import Toolbar from './Toolbar';
-import axios from 'axios';
 import Donors from './Donors';
-
-
-const token = localStorage.jwt;
-var user = JSON.parse(localStorage.getItem("user"));
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,29 +26,38 @@ const useStyles = makeStyles((theme) => ({
 
 const ManageDonorListView = () => {
   const classes = useStyles();
+  // eslint-disable-next-line
   const [bloodDonors, setBloodDonors] = useState([]);
 
-  useEffect(() => {
-    getAllBloodDonors();
-  }, []);
+  // useEffect(() => {
+  //   getAllBloodDonors();
+  // }, []);
 
-  const getAllBloodDonors = () => {
-    axios({
-      method: 'GET',
-      url: `http://localhost:1337/blood-donors?bloodBank.id=${user.bloodBank.id}&_sort=createdAt:DESC`,
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-    })
-    //handle success
-    .then((response) => {
-      setBloodDonors(response.data);
-    })
-    //handle error
-    .catch(error => console.error(`Error: ${error}`));
-  }
+  // const getAllBloodDonors = () => {
+  //   axios({
+  //     method: 'GET',
+  //     url: `http://localhost:1337/blood-donors?bloodBank.id=${user.bloodBank.id}&_sort=createdAt:DESC`,
+  //     headers: {
+  //       Authorization: `Bearer ${token}`
+  //     },
+  //   })
+  //   //handle success
+  //   .then((response) => {
+  //     setBloodDonors(response.data);
+  //   })
+  //   //handle error
+  //   .catch(error => console.error(`Error: ${error}`));
+  // }
 
   return (
+    <>
+    <Typography
+    align="center"
+    color="secondary"
+    variant="body1"
+  >
+    All data is mocked for demo purposes and does not represent any real people.
+  </Typography>
     <Page
       className={classes.root}
       title="Manage Donors"
@@ -64,6 +69,7 @@ const ManageDonorListView = () => {
         </Box>
       </Container>
     </Page>
+    </>
   );
 };
 

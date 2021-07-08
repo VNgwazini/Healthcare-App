@@ -30,6 +30,11 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
+import { 
+  bloodRequests,
+  bloodBanks
+} from  "../../../data"
+import "./custom.css"
 import CancelIcon from '@material-ui/icons/Cancel';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
@@ -38,7 +43,6 @@ import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 import axios from 'axios';
 
 const token = localStorage.getItem("jwt");
-const user = JSON.parse(localStorage.getItem("user"));
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -135,60 +139,8 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
   };
 
   const handleSubmitFulfill = (props) => {
-    let formData =  new FormData(document.getElementById("fulfillRequest"));
-    var dataObject = {
-      status: "shipped",
-      supplier: user.bloodBank,
-      deliveryMethod: formData.get("deliveryMethod")
-    }
-
-    axios({
-      method: 'PUT',
-      url: `http://localhost:1337/blood-requests/${selectedCustomerIds[0]}`,
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      data: dataObject
-    })
-    .then((response) => {
-      handleCloseFulfill();
-    })
-    .catch(error => console.error(`Error: ${error}`));
-
-    var requestToUpdate = requests.filter(request => request.id === selectedCustomerIds[0])[0];
-    const currentDate = new Date();
-    // gets the oldest, non-expired, unassigned units of the right blood type
-    var url = `http://localhost:1337/bloodsupplies?bloodBank.id=${user.bloodBank.id}&bloodDonor.bloodGroup=${requestToUpdate.bloodGroup}&expiration_gt=${currentDate.toISOString()}&usage=unassigned&_sort=expiration:ASC`;
-    if (url.includes('+')) {
-      url = url.replace('+', '%2B');
-    }
-    axios({
-      method: 'GET',
-      url: url,
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-    .then((response2) => {
-      for (var i = 0; i < requestToUpdate.units; i++) {
-        axios({
-          method: 'PUT',
-          url: `http://localhost:1337/bloodsupplies/${response2.data[i].id}`,
-          headers: {
-            Authorization: `Bearer ${token}`
-          },
-          data: { 
-            bloodRequest: requestToUpdate, 
-            usage: "external" 
-          }
-        })
-        .then((response3) => {
-          console.log(response3.data);
-          window.location.reload();
-        })
-      }
-    })
-    .catch(error => console.error(`Error: ${error}`));
+    handleCloseFulfill();
+    window.location.reload();   
   };
 
   const handleClickOpenCancel = (event, id) => {
@@ -236,7 +188,13 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
     resetSelectedIDs();
   };
 
-  const displayTable = (requests) => {
+  // eslint-disable-next-line
+  const [data, setData] = useState(bloodRequests);
+  // eslint-disable-next-line
+  const [bankData, setbankData] = useState(bloodBanks);
+
+
+  const displayTable = () => {
     return (
       <>
         <Card>
@@ -337,7 +295,7 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
         >
           <Typography className={classes.typography}>Reason: {state.cancellationReason}</Typography>
         </Popover>
-        <Table>
+        <Table className="custom-table">
           <TableHead>
             <TableRow>
               {/* <TableCell padding="checkbox">
@@ -384,9 +342,9 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-          {requests
+          {data
           .slice(page * limit, page * limit + limit)
-          .map((request) => (
+          .map((request, index) => (
             <>
               <TableRow
                 hover
@@ -446,7 +404,7 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
                   {request.units}
                 </TableCell>
                 <TableCell>
-                  {request.requestor.name}
+                {bankData[index%bankData.length].name ? bankData[index%bankData.length].name + " County Hospital" : "Finding supplier..."}
                 </TableCell>
                 {/* <TableCell>
                   {request.deliveryMethod}
@@ -473,7 +431,7 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
                   {request.requestType}
                 </TableCell>
                 <TableCell>
-                  {request.id.slice(17)}
+                  {request.id}
                 </TableCell>
               </TableRow>
               </>
@@ -497,7 +455,7 @@ const RequestsReceived = ({ className, requests, ...rest }) => {
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={requests.length}
+        count={data.length}
         onChangePage={handlePageChange}
         onChangeRowsPerPage={handleLimitChange}
         page={page}

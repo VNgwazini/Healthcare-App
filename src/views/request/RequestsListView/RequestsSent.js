@@ -32,6 +32,11 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
+import { 
+  bloodRequests,
+  bloodBanks
+} from  "../../../data"
+import "./custom.css"
 import CancelIcon from '@material-ui/icons/Cancel';
 import UpdateIcon from '@material-ui/icons/Update';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
@@ -136,39 +141,8 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
   };
 
   const handleSubmitUpdate = (props) => {
-    let formData =  new FormData(document.getElementById("updateMultiple"));
-    var object = {};
-    for (var pair of formData.entries()) {
-      var key = pair[0];
-      var value = pair[1];
-      if (value !== '') {
-        if (key === "supplierIndex") { 
-          key = "supplier"; 
-          value = suppliers[value];
-        }
-        object[key] = value;
-      }
-    }
-    console.log(object);
-    for(let i in selectedCustomerIds){
-      console.log(`${i}: `,selectedCustomerIds);
-      axios({
-        method: 'PUT',
-        url: `http://localhost:1337/blood-requests/${selectedCustomerIds[i]}`,
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        data: object
-      })
-      //handle success
-      .then((response) => {
-        console.log(response.data);
-        handleCloseUpdate();      
-      })
-      //handle error
-      .catch(error => console.error(`Error: ${error}`));
-      window.location.reload();
-    }
+      handleCloseUpdate();
+      window.location.reload();  
   };
 
   const handleClickOpenCancel = (event, id) => {
@@ -215,8 +189,12 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
     setAnchorEl(null);
     resetSelectedIDs();
   };
+// eslint-disable-next-line
+  const [data, setData] = useState(bloodRequests);
+  // eslint-disable-next-line
+  const [bankData, setbankData] = useState(bloodBanks);
 
-  const displayTable = (requests) => {
+  const displayTable = () => {
     return (
       <>
         <Card>
@@ -282,7 +260,7 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
                             }}
                           >
                             <option aria-label="None" value="" />
-                            {suppliers.map((supplier, index) => 
+                            {bankData.map((supplier, index) => 
                               <option value={index}>{supplier.name}</option>
                             )}
                           </Select>
@@ -380,7 +358,7 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
         >
           <Typography className={classes.typography}>Reason: {state.cancellationReason}</Typography>
         </Popover>
-        <Table>
+        <Table className="custom-table">
           <TableHead>
             <TableRow>
               <TableCell style={{textAlign: "center"}}>
@@ -416,9 +394,9 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-          {requests
+          {data
             .slice(page * limit, page * limit + limit)
-            .map((request) => (
+            .map((request, index) => (
             <>
               <TableRow
                 hover
@@ -470,7 +448,7 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
                   {request.units}
                 </TableCell>
                 <TableCell>
-                  {request.supplier ? request.supplier.name : "Finding supplier..."}
+                  {bankData[index%bankData.length].name ? bankData[index%bankData.length].name + " County Hospital" : "Finding supplier..."}
                 </TableCell>
                 {/* <TableCell>
                   {request.deliveryMethod}
@@ -497,7 +475,7 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
                   {request.requestType}
                 </TableCell>
                 <TableCell>
-                  {request.id.slice(17)}
+                  {request.id}
                 </TableCell>
               </TableRow>
               </>
@@ -521,7 +499,7 @@ const RequestsSent = ({ className, requests, suppliers, ...rest }) => {
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={requests.length}
+        count={data.length}
         onChangePage={handlePageChange}
         onChangeRowsPerPage={handleLimitChange}
         page={page}

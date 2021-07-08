@@ -6,6 +6,7 @@ import {
   Container,
   Divider,
   Grid,
+  Typography,
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
@@ -28,6 +29,14 @@ const Dashboard = () => {
   const classes = useStyles();
   
   return (
+    <>
+    <Typography
+    align="center"
+    color="secondary"
+    variant="body1"
+  >
+    All data is mocked for demo purposes and does not represent any real people.
+  </Typography>
     <Page
       className={classes.root}
       title="Dashboard"
@@ -46,48 +55,48 @@ const Dashboard = () => {
                 spacing={1}
               >
                 <Grid container item xs={3}>
-                  <Grid item xs style={{marginRight: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="A+"
                     />
                   </Grid>
-                  <Grid item xs style={{marginLeft: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="A-"
                     />
                   </Grid>
                 </Grid>
                 <Grid container item xs={3}>
-                  <Grid item xs style={{marginRight: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="B+"
                     />
                   </Grid>
-                  <Grid item xs style={{marginLeft: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="B-"
                     />
                   </Grid>
                 </Grid>
                 <Grid container item xs={3}>
-                  <Grid item xs style={{marginRight: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="AB+"
                     />
                   </Grid>
-                  <Grid item xs style={{marginLeft: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="AB-"
                     />
                   </Grid>
                 </Grid>
                 <Grid container item xs={3}>
-                  <Grid item xs style={{marginRight: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="O+"
                     />
                   </Grid>
-                  <Grid item xs style={{marginLeft: "4px"}}>
+                  <Grid item xs style={{margin: "4px"}}>
                     <BloodTypeCard 
                       bloodType="O-"
                     />
@@ -135,6 +144,7 @@ const Dashboard = () => {
         </Grid>
       </Container>
     </Page>
+    </>
   );
 };
 

@@ -70,7 +70,7 @@ const Toolbar = ({ className, ...rest }) => {
       object[key] = value;
     });
     object["user"] = user;
-    object["bloodBank"] = user.bloodBank;
+    object["bloodBank"] = "Demo Bank";
 
     axios({
       method: 'POST',
@@ -85,6 +85,7 @@ const Toolbar = ({ className, ...rest }) => {
       handleClose();
     })
     .catch(error => console.error(`Error: ${error}`));
+    handleClose();
     window.location.reload();
   };
 

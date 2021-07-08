@@ -11,7 +11,6 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
-import axios from 'axios';
 import Page from 'src/components/Page';
 
 const useStyles = makeStyles((theme) => ({
@@ -41,32 +40,19 @@ const LoginView = () => {
         <Container maxWidth="sm">
           <Formik
             initialValues={{
-              email: 'email@example.com',
-              password: 'Password123'
+              email: 'D3moEmai1@example.com',
+              password: 'P@$sW0rdE2!'
             }}
             validationSchema={Yup.object().shape({
               email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
               password: Yup.string().max(255).required('Password is required')
             })}
-            onSubmit={(data) => {
-              console.log(data)
-              axios
-              .post('http://localhost:1337/auth/local', {
-                identifier: data.email,
-                password: data.password
-              })
-              .then(response => {
-                // Handle success.
-                localStorage.setItem("user", JSON.stringify(response.data.user))
-                localStorage.setItem("jwt", response.data.jwt)
-                navigate('/app/dashboard', { replace: true });
-                window.location.reload();
-              })
-              .catch(error => {
-                // Handle error.
-                console.log('An error occurred:', error.response);
-              });
-            }}
+            onSubmit={
+              (data) => {
+              navigate('/app/dashboard', { replace: true });
+              window.location.reload();
+            }
+          }
           >
             {({
               errors,
@@ -90,7 +76,15 @@ const LoginView = () => {
                     gutterBottom
                     variant="body2"
                   >
-                    Sign in below.
+                    (For demo purposes only.)
+                  </Typography>
+                  &nbsp;
+                  <Typography
+                    color="textSecondary"
+                    gutterBottom
+                    variant="body1"
+                  >
+                    Please click "Sign In Now" to skip login.
                   </Typography>
                 </Box>
                 <Grid
@@ -115,6 +109,7 @@ const LoginView = () => {
                   type="email"
                   value={values.email}
                   variant="outlined"
+                  disabled="true"
                 />
                 <TextField
                   error={Boolean(touched.password && errors.password)}
@@ -128,6 +123,7 @@ const LoginView = () => {
                   type="password"
                   value={values.password}
                   variant="outlined"
+                  disabled="true"
                 />
                 <Box my={2}>
                   <Button

@@ -13,8 +13,6 @@ import NetworkListView from 'src/views/network/NetworkListView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
 
-let isLoggedIn = localStorage.getItem("jwt");
-
 const routes = [
   {
     path: 'app',
@@ -37,7 +35,7 @@ const routes = [
       { path: 'login', element: <LoginView /> },
       { path: 'register', element: <RegisterView /> },
       { path: '404', element: <NotFoundView /> },
-      { path: '/', element: <Navigate to={isLoggedIn ? "/app/dashboard" : "/login"} /> },
+      { path: '/', element: <Navigate to="/app/dashboard"/> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   }

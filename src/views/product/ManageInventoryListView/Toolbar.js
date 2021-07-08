@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -19,6 +19,9 @@ import {
 } from '@material-ui/core';
 import axios from 'axios';
 import moment from 'moment';
+import { 
+  bloodDonors
+} from  "../../../data"
 
 const token = localStorage.jwt;
 
@@ -83,22 +86,25 @@ const Toolbar = ({ className, donors, ...rest }) => {
       },
       data: {
         user: user,
-        bloodBank: user.bloodBank,
+        bloodBank: "Demo Bank",
         bloodDonor: donors[formData.get("donorIndex")],
         usage: (formData.get("usage") === '' ? "unassigned" : formData.get("usage")),
         expiration: expirationDate.toISOString()
       } 
     })
     .then((response) => {
-      console.log(response.data);
       handleClose();
       setCurDonor('');
       window.location.reload();
     })
     .catch(error => console.error(`Error: ${error}`));
+    handleClose();
+    window.location.reload();
   };
 
   const user = JSON.parse(localStorage.getItem("user"));
+  // eslint-disable-next-line
+  const [bloodDonorData, setBloodDonorData] = useState(bloodDonors);
 
   return (
     <div
@@ -140,7 +146,7 @@ const Toolbar = ({ className, donors, ...rest }) => {
                         }}
                       >
                         <option aria-label="None" value="" />
-                        {donors.map((donor, index) => 
+                        {bloodDonorData.map((donor, index) => 
                           <option value={index}>{donor.lastName + ", " + donor.firstName}</option>
                         )}
                       </Select>

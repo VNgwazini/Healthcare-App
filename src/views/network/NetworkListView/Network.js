@@ -13,6 +13,11 @@ import {
   TableRow,
   makeStyles,
 } from '@material-ui/core';
+import { 
+  bloodBanks
+} from  "../../../data"
+import "./custom.css"
+import { random } from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -25,6 +30,8 @@ const Network = ({ className, banks, ...rest }) => {
   const classes = useStyles();
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
+  // eslint-disable-next-line
+  const [data, setData] = useState(bloodBanks);
 
   const handleLimitChange = (event) => {
     setLimit(event.target.value);
@@ -37,7 +44,7 @@ const Network = ({ className, banks, ...rest }) => {
   const displayTable = () => {
     return (
       <>
-      <Table>
+      <Table className="custom-table">
       <TableHead>
           <TableRow>
           <TableCell style={{width: "5%"}}>
@@ -70,7 +77,7 @@ const Network = ({ className, banks, ...rest }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-        {banks
+        {bloodBanks
         .slice(page * limit, page * limit + limit)
         .map((bank, index) => (
           <>
@@ -79,31 +86,31 @@ const Network = ({ className, banks, ...rest }) => {
               key={bank.id}
             >
               <TableCell>
-                {bank[0].name}
+                {bank.name + " County Hospital"}
               </TableCell>
               <TableCell>
-                {bank[1].count}
+              {bank.id+random(10)}
               </TableCell>
               <TableCell>
-                {bank[2].count}
+              {bank.id+random(10)}
               </TableCell>
               <TableCell>
-                {bank[3].count}
+              {bank.id+random(10)}
               </TableCell>
               <TableCell>
-                {bank[4].count}
+              {bank.id+random(10)}
               </TableCell>
               <TableCell>
-                {bank[5].count}
+              {bank.id+random(10)}
               </TableCell>
               <TableCell>
-                {bank[6].count}
+              {bank.id+random(10)}
               </TableCell>
               <TableCell>
-                {bank[7].count}
+              {bank.id+random(10)}
               </TableCell>
               <TableCell>
-                {bank[8].count}
+              {bank.id+random(10)}
               </TableCell>
             </TableRow>
             </>
@@ -127,7 +134,7 @@ const Network = ({ className, banks, ...rest }) => {
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={banks.length}
+        count={data.length}
         onChangePage={handlePageChange}
         onChangeRowsPerPage={handleLimitChange}
         page={page}

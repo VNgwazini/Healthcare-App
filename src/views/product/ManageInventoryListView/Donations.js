@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import "./custom.css"
 import {
   Button,
   Box,
@@ -32,10 +33,15 @@ import {
 import UpdateIcon from '@material-ui/icons/Update';
 import InfoIcon from '@material-ui/icons/Info';
 import moment from 'moment';
-
+import { 
+  bloodUnits,
+  bloodDonors
+} from  "../../../data"
 import axios from 'axios';
+import { random } from 'lodash';
 
 const token = localStorage.jwt;
+
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -51,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Donations = ({ className, bloodUnits, donors, ...rest }) => {
+const Donations = ({ className, ...rest }) => {
   const classes = useStyles();
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
   const [limit, setLimit] = useState(10);
@@ -75,7 +81,7 @@ const Donations = ({ className, bloodUnits, donors, ...rest }) => {
   const handleDonorChange = (event) => {
     // since the "value" of the donor field in the form
     // is the index of the donor in the donors list passed in:
-    setCurDonor(donors[event.target.value]);
+    // setCurDonor(donors[event.target.value]);
   }
 
   const handleClickOpen = (event, id) => {
@@ -101,7 +107,7 @@ const Donations = ({ className, bloodUnits, donors, ...rest }) => {
     const usage = formData.get("usage");
 
     var object = {}
-    if (donorIndex) {object["bloodDonor"] = donors[donorIndex]}
+    if (donorIndex) {object["bloodDonor"] = data.bloodDonor}
     if (expirationDate) {object["expiration"] = expirationDate.toISOString()}
     if (usage) {object["usage"] = usage}
     console.log(object);
@@ -124,6 +130,8 @@ const Donations = ({ className, bloodUnits, donors, ...rest }) => {
       })
       //handle error
       .catch(error => console.error(`Error: ${error}`));
+      handleClose();
+      window.location.reload();   
     }
   };
 
@@ -202,8 +210,13 @@ const Donations = ({ className, bloodUnits, donors, ...rest }) => {
     setOpenInfo(false);
     resetSelectedIDs();
   };
+// eslint-disable-next-line
+  const [data, setData] = useState(bloodUnits);
+  // eslint-disable-next-line
+  const [bloodDonorData, setBloodDonorData] = useState(bloodDonors);
+  const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-","O+", "O-"]
 
-  const displayTable = (bloodUnits) => {
+  const displayTable = () => {
     return (
       <>
       <Box my={3} mx={3}>
@@ -231,7 +244,7 @@ const Donations = ({ className, bloodUnits, donors, ...rest }) => {
                       }}
                     >
                       <option aria-label="None" value="" />
-                      {donors.map((donor, index) => 
+                      {bloodDonorData.map((donor, index) => 
                         <option value={index}>{donor.firstName + " " + donor.lastName}</option>
                       )}
                     </Select>
@@ -319,7 +332,7 @@ const Donations = ({ className, bloodUnits, donors, ...rest }) => {
           </DialogContent>  
         </Dialog>
       </Box>
-      <Table style={{width: "101%"}}>
+      <Table style={{width: "101%"}} className="custom-table">
       <TableHead>
           <TableRow>
             <TableCell style={{textAlign: "center"}}>
@@ -355,9 +368,9 @@ const Donations = ({ className, bloodUnits, donors, ...rest }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-        {bloodUnits
+        {data
         .slice(page * limit, page * limit + limit)
-        .map((bloodUnit) => (
+        .map((bloodUnit, index) => (
           <>
             <TableRow
               hover
@@ -374,7 +387,7 @@ const Donations = ({ className, bloodUnits, donors, ...rest }) => {
                 />
               </TableCell>
               <TableCell>
-                {bloodUnit.bloodDonor.bloodGroup}
+                {bloodGroups[random(bloodGroups.length-1)]}
               </TableCell>
               <TableCell>
                 {moment(bloodUnit.createdAt).format('ll')}
@@ -383,13 +396,13 @@ const Donations = ({ className, bloodUnits, donors, ...rest }) => {
                 {moment(bloodUnit.expiration).format('ll')}
               </TableCell>
               <TableCell>
-                {bloodUnit.bloodDonor.firstName + " " + bloodUnit.bloodDonor.lastName}
+                {bloodDonors[index].firstName + " " +bloodDonors[index].lastName}
               </TableCell>
               <TableCell>
-                {bloodUnit.bloodDonor.previousTransfusions}
+                {bloodDonors[index].previousTransfusions}
               </TableCell>
               <TableCell>
-                {bloodUnit.bloodDonor.previousReactions}
+                {bloodDonors[index].previousReactions}
               </TableCell>
               <TableCell>
                 <Chip
@@ -399,7 +412,7 @@ const Donations = ({ className, bloodUnits, donors, ...rest }) => {
                 />
               </TableCell>
               <TableCell>
-                {bloodUnit.id.slice(17)}
+                {bloodUnit.id}
               </TableCell>
               <TableCell>
                 <Chip 
