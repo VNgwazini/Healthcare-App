@@ -1,4 +1,4 @@
-## Healthcare Dashboard
+## Healthcare App
 
 A demo of a SaaS Software I worked on for connecting hospitals and donors for critical
 life-saving transfusions.
