@@ -61,7 +61,7 @@ const Toolbar = ({ className, donors, ...rest }) => {
   const handleDonorChange = (event) => {
     // since the "value" of the donor field in the form
     // is the index of the donor in the donors list passed in:
-    setCurDonor(donors[event.target.value]);
+    // setCurDonor(donors[event.target.value]);
   }
 
   const handleClickOpen = () => {
